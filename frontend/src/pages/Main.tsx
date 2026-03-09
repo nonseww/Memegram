@@ -1,5 +1,5 @@
 import { MOCK_POSTS } from "../utils/mockPosts";
-import { PostList } from "../components/PostList/PostList";
+import { PostList } from "../components/PostList";
 
 export const Main = () => {
   return (

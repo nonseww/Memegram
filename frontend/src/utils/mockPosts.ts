@@ -36,4 +36,59 @@ export const MOCK_POSTS: Post[] = [
       "Я в своем сознании уже настолько преисполнился что я проживаю миллионы лет",
     is_liked: true,
   },
+  {
+    id: 4,
+    title: "Котики!!!",
+    date: new Date().toISOString(),
+    author: "Салдина Мария",
+    author_pfp:
+      "https://i.pinimg.com/736x/5f/12/cd/5f12cd846e2305afcc2a8ad68d2975f9.jpg",
+    meme: "https://i.pinimg.com/originals/96/d7/cd/96d7cdda7baf60d9669fc34caa1aabc7.jpg",
+    description: "Мои любимые котики!",
+    is_liked: false,
+  },
+  {
+    id: 5,
+    title: "So true",
+    date: new Date().toISOString(),
+    author: "nonseww",
+    author_pfp:
+      "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
+    meme: "https://i.pinimg.com/736x/f2/0c/a1/f20ca11632cd9bb7f6d7068c9844a8ff.jpg",
+    description: "I'm cooked",
+    is_liked: false,
+  },
+  {
+    id: 6,
+    title: "БОМЖ КОР",
+    date: new Date().toISOString(),
+    author: "nonseww",
+    author_pfp:
+      "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
+    meme: "https://i.pinimg.com/474x/0a/cb/a5/0acba50c5632c3ba474ce42d0cad58b0.jpg",
+    description: "ГДЕ ДЕНЬГИ",
+    is_liked: false,
+  },
+  {
+    id: 7,
+    title: "к черту все",
+    date: new Date().toISOString(),
+    author: "nonseww",
+    author_pfp:
+      "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
+    meme: "https://i.pinimg.com/736x/30/f8/c8/30f8c887e3f2dd31361cd3fc72d72eb8.jpg",
+    description: "привет!",
+    is_liked: true,
+  },
+  {
+    id: 8,
+    title: "пока :)",
+    date: new Date().toISOString(),
+    author: "nonseww",
+    author_pfp:
+      "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
+    meme: "https://i.pinimg.com/736x/d7/b1/f6/d7b1f66e59ae551afbe94c61ec3ac6dc.jpg",
+    description: "всем пока!",
+    is_liked: true,
+  },
 ];
