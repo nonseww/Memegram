@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Main } from "./pages/Main";
+import { Header } from "./components/Header";
 
 function App() {
   return (
-    <Main />
+    <>
+      <Header />
+      <Main />
+    </>
     // <BrowserRouter>
     //   <nav>
     //     <Link to="/">Главная</Link>
