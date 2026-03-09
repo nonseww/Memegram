@@ -1,0 +1,24 @@
+.commentButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  width: 45px;
+  height: 45px;
+}
+
+.commentIcon {
+  display: inline-block;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+  cursor: pointer;
+  color: #3b3b3b;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
