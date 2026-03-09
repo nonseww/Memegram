@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: row;
   height: auto;
-  min-height: 15%;
+  min-height: 10%;
   justify-content: space-between;
   padding-inline: 15px;
   padding-block: 8px;
@@ -82,4 +82,50 @@
   gap: 10px;
   padding-bottom: 8px;
   padding-left: 5px;
+}
+
+@media (min-width: 768px) {
+  .headerContainer {
+    padding-inline: 18px;
+    padding-block: 13px;
+  }
+
+  .authorInfo {
+    margin-top: 15px;
+    gap: 20px;
+  }
+
+  .authorName {
+    font-size: 22px;
+  }
+
+  .authorImage {
+    width: 60px;
+    height: 60px;
+  }
+
+  .date {
+    font-size: 15px;
+  }
+
+  .infoContainer {
+    padding-inline: 25px;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .readContinue {
+    font-size: 20px;
+  }
+
+  .footerContainer {
+    padding-left: 20px;
+    padding-bottom: 15px;
+  }
 }

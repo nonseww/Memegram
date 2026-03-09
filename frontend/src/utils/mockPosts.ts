@@ -24,4 +24,16 @@ export const MOCK_POSTS: Post[] = [
     description: "Какая-то хуйня из пинтереста",
     is_liked: true,
   },
+  {
+    id: 3,
+    title: "Ну жиза",
+    date: new Date().toISOString(),
+    author: "Салдина Мария",
+    author_pfp:
+      "https://i.pinimg.com/736x/5f/12/cd/5f12cd846e2305afcc2a8ad68d2975f9.jpg",
+    meme: "https://i.pinimg.com/1200x/1d/03/29/1d0329df01e8fc7714ca0c439e302101.jpg",
+    description:
+      "Я в своем сознании уже настолько преисполнился что я проживаю миллионы лет",
+    is_liked: true,
+  },
 ];
