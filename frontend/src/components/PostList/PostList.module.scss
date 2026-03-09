@@ -1,0 +1,11 @@
+.posts {
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 0 auto;
+  margin-block: 40px;
+}
+
+@media (min-width: 768px) {
+}
