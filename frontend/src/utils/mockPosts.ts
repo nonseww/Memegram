@@ -12,6 +12,8 @@ export const MOCK_POSTS: Post[] = [
     description:
       "Бла бла бла этот мем очень веселый смешной у меня сдохла мать...",
     is_liked: false,
+    likes_count: 10,
+    comments_count: 1,
   },
   {
     id: 2,
@@ -23,6 +25,8 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/736x/f4/21/6d/f4216d475eb1c8e97cbf67da212b7c30.jpg",
     description: "Какая-то хуйня из пинтереста",
     is_liked: true,
+    likes_count: 2,
+    comments_count: 0,
   },
   {
     id: 3,
@@ -35,6 +39,8 @@ export const MOCK_POSTS: Post[] = [
     description:
       "Я в своем сознании уже настолько преисполнился что я проживаю миллионы лет",
     is_liked: true,
+    likes_count: 8751530,
+    comments_count: 14511,
   },
   {
     id: 4,
@@ -46,6 +52,8 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/originals/96/d7/cd/96d7cdda7baf60d9669fc34caa1aabc7.jpg",
     description: "Мои любимые котики!",
     is_liked: false,
+    likes_count: 7,
+    comments_count: 11,
   },
   {
     id: 5,
@@ -57,6 +65,8 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/736x/f2/0c/a1/f20ca11632cd9bb7f6d7068c9844a8ff.jpg",
     description: "I'm cooked",
     is_liked: false,
+    likes_count: 10,
+    comments_count: 1,
   },
   {
     id: 6,
@@ -68,6 +78,8 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/474x/0a/cb/a5/0acba50c5632c3ba474ce42d0cad58b0.jpg",
     description: "ГДЕ ДЕНЬГИ",
     is_liked: false,
+    likes_count: 10,
+    comments_count: 1,
   },
   {
     id: 7,
@@ -79,6 +91,8 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/736x/30/f8/c8/30f8c887e3f2dd31361cd3fc72d72eb8.jpg",
     description: "привет!",
     is_liked: true,
+    likes_count: 10,
+    comments_count: 1,
   },
   {
     id: 8,
@@ -90,5 +104,7 @@ export const MOCK_POSTS: Post[] = [
     meme: "https://i.pinimg.com/736x/d7/b1/f6/d7b1f66e59ae551afbe94c61ec3ac6dc.jpg",
     description: "всем пока!",
     is_liked: true,
+    likes_count: 10,
+    comments_count: 1,
   },
 ];
