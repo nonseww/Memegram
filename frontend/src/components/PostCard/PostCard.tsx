@@ -11,14 +11,18 @@ interface PostCardProps {
   data: Post;
 }
 
+const limit = 50;
+
 export const PostCard = ({ data }: PostCardProps) => {
-  const limit = 50;
   const correctDate = calcDates(data.date);
   const isTooLongDescription = isTooLongText({
     description: data.description,
     limit: limit,
   });
   const [isLiked, setIsLiked] = useState(data.is_liked);
+  const [likes, setLikes] = useState(data.likes_count);
+
+  //useTransition
 
   return (
     <article className={classes.card}>
@@ -50,11 +54,26 @@ export const PostCard = ({ data }: PostCardProps) => {
       </div>
 
       <footer className={classes.footerContainer}>
-        <HeartButton
-          isLiked={isLiked}
-          onClick={() => setIsLiked((prev) => !prev)}
-        />
-        <CommentButton onClick={() => {}} />
+        <div className={classes.footerIconConrainer}>
+          <HeartButton
+            isLiked={isLiked}
+            onClick={() => {
+              if (isLiked) {
+                setLikes((prev) => prev - 1);
+              } else {
+                setLikes((prev) => prev + 1);
+              }
+              setIsLiked((prev) => !prev);
+            }}
+          />
+          <span className={classes.likes}>{likes}</span>
+        </div>
+        <div className={classes.footerIconConrainer}>
+          <CommentButton onClick={() => {}} />
+          {data.comments_count > 0 && (
+            <span className={classes.comments}>{data.comments_count}</span>
+          )}
+        </div>
       </footer>
     </article>
   );

@@ -12,10 +12,15 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   const isMobile = width < 992;
 
   return (
-    <div className={classes.layout}>
-      {isMobile ? <MobileHeader /> : <DesktopSidebar />}
+    <main>
+      <div className={classes.layout}>
+        {isMobile ? <MobileHeader /> : <DesktopSidebar />}
 
-      <main className={classes.mainContent}>{children}</main>
-    </div>
+        <div className={classes.mainContent}>{children}</div>
+      </div>
+    </main>
   );
 };
+
+// либо preloader! / ref ждать рендер
+// mixin в дисплей
