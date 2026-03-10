@@ -10,3 +10,5 @@ export interface Post {
   likes_count: number;
   comments_count: number;
 }
+
+//camelCase

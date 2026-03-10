@@ -4,9 +4,12 @@ import Logout from "./assets/Logout.svg";
 import Subscriptions from "./assets/Subscriptions.svg";
 import User from "./assets/User.svg";
 
+// массив
+// section
+
 export const DesktopSidebar = () => {
   return (
-    <aside className={classes.asideContainer}>
+    <section className={classes.asideContainer}>
       <nav>
         <ul className={classes.ulList}>
           <li>
@@ -35,6 +38,6 @@ export const DesktopSidebar = () => {
           </li>
         </ul>
       </nav>
-    </aside>
+    </section>
   );
 };

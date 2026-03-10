@@ -11,8 +11,9 @@ interface PostCardProps {
   data: Post;
 }
 
+const limit = 50;
+
 export const PostCard = ({ data }: PostCardProps) => {
-  const limit = 50;
   const correctDate = calcDates(data.date);
   const isTooLongDescription = isTooLongText({
     description: data.description,
@@ -20,6 +21,8 @@ export const PostCard = ({ data }: PostCardProps) => {
   });
   const [isLiked, setIsLiked] = useState(data.is_liked);
   const [likes, setLikes] = useState(data.likes_count);
+
+  //useTransition
 
   return (
     <article className={classes.card}>
