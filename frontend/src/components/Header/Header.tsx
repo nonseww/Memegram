@@ -1,8 +1,8 @@
 import LogoImage from "./assets/logo_image.svg";
 import Memegram from "./assets/Memegram.svg";
-import Menu from "./assets/Menu.svg";
 import classes from "./Header.module.scss";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { Menu } from "../../ui/Menu";
 
 export const Header = () => {
   const width = useWindowSize();
@@ -15,11 +15,7 @@ export const Header = () => {
           <img src={LogoImage} alt="лого" className={classes.logoImage} />
           <img src={Memegram} alt="Memegram" className={classes.logoName} />
         </a>
-        {isMobile && (
-          <button className={classes.menuButton}>
-            <img src={Menu} alt="Menu" className={classes.menuImage} />
-          </button>
-        )}
+        {isMobile && <Menu className={classes.menu} />}
       </nav>
     </header>
   );
