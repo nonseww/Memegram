@@ -19,8 +19,8 @@ export const PostCard = ({ data }: PostCardProps) => {
     description: data.description,
     limit: limit,
   });
-  const [isLiked, setIsLiked] = useState(data.is_liked);
-  const [likes, setLikes] = useState(data.likes_count);
+  const [isLiked, setIsLiked] = useState(data.isLiked);
+  const [likes, setLikes] = useState(data.likesCount);
 
   //useTransition
 
@@ -29,7 +29,7 @@ export const PostCard = ({ data }: PostCardProps) => {
       <header className={classes.headerContainer}>
         <div className={classes.authorInfo}>
           <img
-            src={data.author_pfp}
+            src={data.authorPfp}
             alt={data.author}
             className={classes.authorImage}
           />
@@ -70,8 +70,8 @@ export const PostCard = ({ data }: PostCardProps) => {
         </div>
         <div className={classes.footerIconConrainer}>
           <CommentButton onClick={() => {}} />
-          {data.comments_count > 0 && (
-            <span className={classes.comments}>{data.comments_count}</span>
+          {data.commentsCount > 0 && (
+            <span className={classes.comments}>{data.commentsCount}</span>
           )}
         </div>
       </footer>
