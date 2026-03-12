@@ -1,0 +1,14 @@
+@use "/src/styles/svg";
+
+.menuButton {
+  background-color: inherit;
+  cursor: pointer;
+  @include svg.svg-styles;
+}
+
+.menuImage {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  @include svg.svg-styles;
+}

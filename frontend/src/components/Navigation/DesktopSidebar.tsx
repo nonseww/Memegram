@@ -1,41 +1,32 @@
 import classes from "./Navigation.module.scss";
-import Coffee from "./assets/Coffee.svg";
-import Logout from "./assets/Logout.svg";
-import Subscriptions from "./assets/Subscriptions.svg";
-import User from "./assets/User.svg";
+import { User, Subscriptions, Coffee, Logout } from "../../ui";
 
-// массив
-// section
+interface NavElement {
+  Icon: React.ElementType;
+  label: string;
+  href: string;
+}
+
+const navElements: NavElement[] = [
+  { Icon: User, label: "Профиль", href: "/profile" },
+  { Icon: Subscriptions, label: "Подписки", href: "/subscriptions" },
+  { Icon: Coffee, label: "Запостить", href: "/post" },
+  { Icon: Logout, label: "Выйти", href: "/logout" },
+];
 
 export const DesktopSidebar = () => {
   return (
     <section className={classes.asideContainer}>
       <nav>
         <ul className={classes.ulList}>
-          <li>
-            <a>
-              <img src={User} className={classes.icon} />
-              <span>Профиль</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <img src={Subscriptions} className={classes.icon} />
-              <span>Подписки</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <img src={Coffee} className={classes.icon} />
-              <span>Запостить</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <img src={Logout} className={classes.icon} />
-              <span>Выйти</span>
-            </a>
-          </li>
+          {navElements.map(({ Icon, label, href }) => (
+            <li key={label}>
+              <a href={href}>
+                <Icon className={classes.Icon} />
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
     </section>

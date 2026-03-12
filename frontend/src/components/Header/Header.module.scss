@@ -1,8 +1,10 @@
+@use "/src/styles/variables";
+
 .headerContainer {
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid #111;
-  background-color: #fff872;
+  border-bottom: 1px solid variables.$dark-border-color;
+  background-color: variables.$main-yellow-color;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -36,17 +38,9 @@
   width: 120px;
 }
 
-.menuButton {
-  background-color: inherit;
-  cursor: pointer;
-}
-
-.menuImage {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  width: 35px;
-  height: 35px;
+.menu {
+  width: 33px;
+  height: 33px;
 }
 
 @media (min-width: 768px) {
@@ -62,8 +56,8 @@
     width: 140px;
   }
 
-  .menuImage {
-    width: 40px;
-    height: 40px;
+  .menu {
+    width: 38px;
+    height: 38px;
   }
 }

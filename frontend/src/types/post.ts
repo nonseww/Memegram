@@ -3,12 +3,10 @@ export interface Post {
   title: string;
   date: string;
   author: string;
-  author_pfp: string;
+  authorPfp: string;
   meme: string;
   description: string;
-  is_liked: boolean;
-  likes_count: number;
-  comments_count: number;
+  isLiked: boolean;
+  likesCount: number;
+  commentsCount: number;
 }
-
-//camelCase
