@@ -9,10 +9,10 @@ export const LoginForm = () => {
       <form>
         <h2>{isLogin ? " Регистрация" : "Авторизация"}</h2>
         <fieldset>
-          <input type="text">Username</input>
-          {!isLogin && <input type="text">Имя Фамилия</input>}
-          {!isLogin && <input type="email">Почта</input>}
-          <input type="password">Пароль</input>
+          <input type="text" placeholder="Username" />
+          {!isLogin && <input type="text" placeholder="Имя Фамилия" />}
+          {!isLogin && <input type="email" placeholder="Почта" />}
+          <input type="password" placeholder="Пароль" />
 
           <div>
             <span></span>

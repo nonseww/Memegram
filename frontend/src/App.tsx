@@ -1,26 +1,19 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Main } from "./pages/Main";
-import { Header } from "./components/Header";
+import { Login } from "./pages/Login";
 import { MainLayout } from "./layouts/MainLayout";
 
 function App() {
   return (
-    // wrapper header
-    <>
-      <Header />
-      <MainLayout>
-        <Main />
-      </MainLayout>
-    </>
-    // <BrowserRouter>
-    //   <nav>
-    //     <Link to="/">Главная</Link>
-    //   </nav>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Main />} />
+        </Route>
 
-    //   <Routes>
-    //     <Route path="/" element={<Main />} />
-    //   </Routes>
-    // </BrowserRouter>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
