@@ -1,34 +1,45 @@
-import classes from "./Navigation.module.scss";
-import { User, Subscriptions, Coffee, Logout } from "../../ui";
+import { Box, Drawer, Toolbar } from "@mui/material";
+import { NavigationList } from "./NavigationList";
+import v from "/src/styles/_variables.module.scss";
 
-interface NavElement {
-  Icon: React.ElementType;
-  label: string;
-  href: string;
-}
+const DRAWER_WIDTH = 280;
 
-const navElements: NavElement[] = [
-  { Icon: User, label: "Профиль", href: "/profile" },
-  { Icon: Subscriptions, label: "Подписки", href: "/subscriptions" },
-  { Icon: Coffee, label: "Запостить", href: "/post" },
-  { Icon: Logout, label: "Выйти", href: "/logout" },
-];
-
-export const DesktopSidebar = () => {
-  return (
-    <section className={classes.asideContainer}>
-      <nav>
-        <ul className={classes.ulList}>
-          {navElements.map(({ Icon, label, href }) => (
-            <li key={label}>
-              <a href={href}>
-                <Icon className={classes.Icon} />
-                <span>{label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </section>
-  );
-};
+export const DesktopSidebar = () => (
+  <Box
+    component="nav"
+    sx={{
+      width: { lg: DRAWER_WIDTH },
+      flexShrink: { lg: 0 },
+      display: { xs: "none", lg: "flex" },
+    }}
+  >
+    <Toolbar />
+    <Drawer
+      variant="permanent"
+      sx={{
+        "& .MuiDrawer-paper": {
+          width: DRAWER_WIDTH,
+          boxSizing: "border-box",
+          borderRight: `1px solid ${v.mainBorder}`,
+          p: 3,
+          display: "flex",
+          flexDirection: "column",
+        },
+      }}
+      open
+    >
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          mt: "30%",
+          alignItems: "center",
+          p: 3,
+        }}
+      >
+        <NavigationList />
+      </Box>
+    </Drawer>
+  </Box>
+);

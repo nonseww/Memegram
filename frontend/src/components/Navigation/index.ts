@@ -1,4 +1,4 @@
 import { DesktopSidebar } from "./DesktopSidebar";
-import { MobileHeader } from "./MobileHeader";
+import { MobileDrawer } from "./MobileDrawer";
 
-export { DesktopSidebar, MobileHeader };
+export { DesktopSidebar, MobileDrawer };
