@@ -1,0 +1,38 @@
+$main-yellow-color: #fff872;
+$secondary-yellow-color: #fffdde;
+$third-yellow-color: #fffdf0;
+
+$main-purple-color: #8a2be2;
+$secondary-purple-color: #9041da;
+
+$main-border-color: #a3a088;
+$second-border-color: #787878;
+$form-border-color: #fff872;
+$dark-border-color: #111111;
+$text-color: black;
+
+$placeholder-color: #707070;
+
+$a-color: #535bf2;
+$comment-color: #3b3b3b;
+$background-color: #f9f9f9;
+$orange-a-color: #b36f09;
+$ative-orange-a-color: #8a5404;
+
+$button-color: #fff872;
+$active-button-color: #fdf55f;
+
+$design-yellow-color: #fffdda;
+$design-dark-yellow-color: #fff872;
+
+:export {
+  mainYellow: $main-yellow-color;
+  mainPurple: $main-purple-color;
+  bg: $background-color;
+  textPlaceholder: $placeholder-color;
+  border: $main-border-color;
+  orange: $orange-a-color;
+  activeOrange: $ative-orange-a-color;
+  textColor: $text-color;
+  background: $design-yellow-color;
+}
