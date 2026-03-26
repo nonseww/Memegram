@@ -1,4 +1,4 @@
-@use "/src/styles/svg";
+@use "/src/styles/mixins";
 @use "/src/styles/variables.module";
 
 .commentButton {
@@ -11,7 +11,7 @@
   width: 45px;
   height: 45px;
 
-  @include svg.svg-styles;
+  @include mixins.svg-styles;
 }
 
 .commentIcon {

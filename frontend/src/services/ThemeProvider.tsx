@@ -1,17 +1,7 @@
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme,
-} from "@mui/material/styles";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import type { ReactNode } from "react";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#ff9800",
-    },
-  },
-});
+import { theme } from "../styles/theme";
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   return (

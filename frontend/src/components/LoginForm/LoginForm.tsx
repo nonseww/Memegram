@@ -8,20 +8,30 @@ import {
   Link,
   FormControlLabel,
   Checkbox,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
-import type { FormErrors } from "../../types/formErrors";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 
 export const LoginForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<formData>({
-    defaultValues: { username: "", name: "", email: "", password: "" },
+    defaultValues: {
+      username: "",
+      name: "",
+      email: "",
+      password: "",
+      agreement: false,
+    },
   });
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onSubmit = (data: formData) => {
     console.log("Готово", data);
@@ -56,6 +66,13 @@ export const LoginForm = () => {
                 error={!!errors.username}
                 helperText={errors.username?.message}
                 fullWidth
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">@</InputAdornment>
+                    ),
+                  },
+                }}
               />
             )}
           />
@@ -116,28 +133,62 @@ export const LoginForm = () => {
                 {...field}
                 variant="standard"
                 label="Пароль"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 fullWidth
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             )}
           />
         </Box>
 
         <Box className={classes.bottomContainer}>
-          <FormControlLabel
-            control={<Checkbox size="small" />}
-            label={
-              <Typography variant="body2">
-                Я принимаю{" "}
-                <Link className={classes.aSpan} href="#">
-                  условия пользования
-                </Link>
-              </Typography>
-            }
-            sx={{ ml: 0 }}
-          />
+          {isLogin && (
+            <Controller
+              name="agreement"
+              control={control}
+              rules={{ required: "Необходимо принять условия" }}
+              render={({ field }) => (
+                <FormControlLabel
+                  {...field}
+                  control={
+                    <Checkbox
+                      size="small"
+                      checked={!!field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                    />
+                  }
+                  label={
+                    <Typography
+                      variant="body2"
+                      color={errors.agreement ? "error" : "textPlain"}
+                    >
+                      Я принимаю{" "}
+                      <Link className={classes.aSpan} href="#">
+                        условия пользования
+                      </Link>
+                    </Typography>
+                  }
+                  sx={{ ml: 0 }}
+                />
+              )}
+            />
+          )}
 
           <Typography
             className={classes.changeLogin}
