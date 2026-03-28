@@ -1,0 +1,11 @@
+@use "/src/styles/mixins";
+
+.backgroundImage {
+  @include mixins.background-image-styles;
+  height: 20vh;
+}
+
+.avatar {
+  width: 80px !important;
+  height: 80px !important;
+}
