@@ -1,9 +1,9 @@
-import type { Post } from "../../types/post";
-import { calcDates } from "../../utils/calcDates";
-import { isTooLongText } from "../../utils/isTooLongText";
-import { updateText } from "../../utils/updateText";
-import { HeartButton } from "../../ui/HeartButton";
-import { CommentButton } from "../../ui/CommentButton";
+import type { Post } from "@/types/post";
+import { calcDates } from "@/utils/calcDates";
+import { isTooLongText } from "@/utils/isTooLongText";
+import { updateText } from "@/utils/updateText";
+import { HeartButton } from "@/ui/HeartButton";
+import { CommentButton } from "@/ui/CommentButton";
 import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -16,8 +16,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import v from "@/styles/_variables.module.scss";
-import { useImageLazyLoad } from "@/hooks/useImageLazyLoad";
-import { useInView } from "@/hooks/useInView";
+import { LazyImageGuard } from "@/ui/LazyImageGuard";
 
 interface PostCardProps {
   data: Post;
@@ -32,9 +31,6 @@ export const PostCard = ({ data }: PostCardProps) => {
   });
   const [isLiked, setIsLiked] = useState(data.isLiked);
   const [likes, setLikes] = useState(data.likesCount);
-  const { isInView, containerRef } = useInView("300px");
-  const { isLoaded, isError, imageRef, handleLoad, handleError } =
-    useImageLazyLoad(isInView ? data.meme : "");
 
   const COLORS = {
     cardColor: v.cardColor,
@@ -49,7 +45,6 @@ export const PostCard = ({ data }: PostCardProps) => {
   return (
     <Card
       component="article"
-      ref={containerRef}
       sx={{
         width: "100%",
         minHeight: "450px",
@@ -74,14 +69,43 @@ export const PostCard = ({ data }: PostCardProps) => {
           "& .MuiCardHeader-content": { overflow: "hidden" },
         }}
         avatar={
-          <Avatar
+          <LazyImageGuard
             src={data.authorPfp}
-            sx={{
-              width: { xs: 40, sm: 60 },
-              height: { xs: 40, sm: 60 },
-              border: `1px solid ${COLORS.darkBorder}`,
-            }}
-          />
+            minHeight={0}
+            viewHeight="300px"
+            skeleton={
+              <Skeleton
+                variant="circular"
+                animation="wave"
+                sx={{
+                  width: { xs: 40, sm: 60 },
+                  height: { xs: 40, sm: 60 },
+                  bgcolor: "rgba(0, 0, 0, 0.11)",
+                  border: `1px solid ${COLORS.darkBorder}`,
+                }}
+              />
+            }
+          >
+            {(lazyProps) => (
+              <Avatar
+                {...lazyProps}
+                src={data.authorPfp}
+                slotProps={{
+                  img: {
+                    ref: lazyProps.ref,
+                    onLoad: lazyProps.onLoad,
+                    onError: lazyProps.onError,
+                  },
+                }}
+                sx={{
+                  ...lazyProps.sx,
+                  width: { xs: 40, sm: 60 },
+                  height: { xs: 40, sm: 60 },
+                  border: `1px solid ${COLORS.darkBorder}`,
+                }}
+              />
+            )}
+          </LazyImageGuard>
         }
         title={
           <Link
@@ -108,34 +132,28 @@ export const PostCard = ({ data }: PostCardProps) => {
         }
       ></CardHeader>
 
-      <Box sx={{ width: "100%" }}>
-        {(!isInView || !isLoaded) && (
+      <LazyImageGuard
+        src={data.meme}
+        minHeight={300}
+        viewHeight="300px"
+        skeleton={
           <Skeleton
             variant="rectangular"
             width="100%"
+            animation="wave"
             sx={{
               bgcolor: "rgba(0, 0, 0, 0.11)",
               height: { xs: "350px", md: "450px" },
             }}
-            animation="wave"
           />
+        }
+      >
+        {(lazyProps) => (
+          <CardMedia {...lazyProps} component="img" image={data.meme} />
         )}
-        {isInView && (
-          <CardMedia
-            component="img"
-            ref={imageRef}
-            image={data.meme}
-            alt={data.title}
-            loading="lazy"
-            onLoad={handleLoad}
-            onError={handleError}
-            sx={{
-              width: "100%",
-              height: isLoaded && !isError ? "auto" : 0,
-              display: "block",
-            }}
-          />
-        )}
+      </LazyImageGuard>
+
+      <Box sx={{ width: "100%" }}>
         <CardContent
           sx={{
             px: { xs: "15px", sm: "25px" },

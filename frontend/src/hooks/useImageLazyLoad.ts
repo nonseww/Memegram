@@ -7,14 +7,20 @@ export const useImageLazyLoad = (src: string) => {
 
   useEffect(() => {
     if (!src) return;
+    const img = imageRef.current;
+
+    if (img && img.complete) {
+      if (img.naturalWidth === 0) {
+        setIsError(true);
+      } else {
+        setIsLoaded(true);
+      }
+      return;
+    }
 
     setIsLoaded(false);
     setIsError(false);
-
-    if (imageRef.current?.complete) {
-      setIsLoaded(true);
-    }
-  }, []);
+  }, [src]);
 
   const handleLoad = () => {
     setIsLoaded(true);

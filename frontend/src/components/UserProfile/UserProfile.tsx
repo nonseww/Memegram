@@ -8,8 +8,9 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Edit from "@mui/icons-material/Edit";
-import classes from "./UserProfile.module.scss";
 import { InfoList } from "./InfoList";
+import { LazyImageGuard } from "@/ui/LazyImageGuard";
+import Skeleton from "@mui/material/Skeleton";
 
 interface UserProfileProps {
   userData: userProfile;
@@ -28,15 +29,36 @@ export const UserProfile = ({ userData }: UserProfileProps) => {
         mx: { lg: "auto" },
       }}
     >
-      <Box
-        className={classes.backgroundImage}
-        sx={{
-          width: "100%",
-          backgroundImage: `url(${userData.imageUrl})`,
-          position: "relative",
-          height: { xs: "150px", md: "200px" },
-        }}
-      />
+      <LazyImageGuard
+        src={userData.imageUrl}
+        minHeight={150}
+        viewHeight="0px"
+        skeleton={
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            animation="wave"
+            sx={{
+              bgcolor: "rgba(0, 0, 0, 0.11)",
+              height: { xs: "150px", md: "200px" },
+            }}
+          />
+        }
+      >
+        {(lazyProps) => (
+          <Box
+            {...lazyProps}
+            component="img"
+            src={userData.imageUrl}
+            sx={{
+              ...lazyProps.sx,
+              width: "100%",
+              height: { xs: "150px", md: "200px" },
+              objectFit: "cover",
+            }}
+          />
+        )}
+      </LazyImageGuard>
 
       <Box
         sx={{

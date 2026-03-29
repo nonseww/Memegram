@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export const useInView = (margin: string = "350px") => {
+export const useInView = (margin: string | number) => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
