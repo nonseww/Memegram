@@ -1,14 +1,12 @@
 import type { userProfile } from "../../types/userData";
-import {
-  Box,
-  Paper,
-  Avatar,
-  Typography,
-  Divider,
-  Stack,
-  IconButton,
-} from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Edit from "@mui/icons-material/Edit";
 import classes from "./UserProfile.module.scss";
 import { InfoList } from "./InfoList";

@@ -1,11 +1,22 @@
 import type { Post } from "../../types/post";
-import classes from "./PostCard.module.scss";
 import { calcDates } from "../../utils/calcDates";
 import { isTooLongText } from "../../utils/isTooLongText";
 import { updateText } from "../../utils/updateText";
 import { HeartButton } from "../../ui/HeartButton";
 import { CommentButton } from "../../ui/CommentButton";
 import { useState } from "react";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Skeleton from "@mui/material/Skeleton";
+import v from "/src/styles/_variables.module.scss";
+import { useImageLazyLoad } from "../../hooks/useImageLazyLoad";
 
 interface PostCardProps {
   data: Post;
@@ -14,47 +25,161 @@ interface PostCardProps {
 const limit = 50;
 
 export const PostCard = ({ data }: PostCardProps) => {
-  const correctDate = calcDates(data.date);
   const isTooLongDescription = isTooLongText({
     description: data.description,
     limit: limit,
   });
   const [isLiked, setIsLiked] = useState(data.isLiked);
   const [likes, setLikes] = useState(data.likesCount);
+  const { isLoaded, isError, imageRef, handleLoad, handleError } =
+    useImageLazyLoad();
+
+  const COLORS = {
+    cardColor: v.cardColor,
+    mainBorder: "#e0e0e0",
+    darkBorder: "#bdbdbd",
+    mainPurple: "#8a2be2",
+    secondaryPurple: "#7b1fa2",
+  };
 
   //useTransition
 
   return (
-    <article className={classes.card}>
-      <header className={classes.headerContainer}>
-        <div className={classes.authorInfo}>
-          <img
+    <Card
+      component="article"
+      sx={{
+        width: "100%",
+        bgcolor: COLORS.cardColor,
+        borderRadius: "25px",
+        border: `1px solid ${COLORS.mainBorder}`,
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 1)",
+        py: "10px",
+        pb: "15px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+        transition: "transform 0.2s",
+        "&:hover": { transform: "translateY(-4px)" },
+      }}
+    >
+      <CardHeader
+        sx={{
+          px: { xs: "15px", sm: "25px" },
+          py: { xs: "10px", sm: "15px" },
+          alignItems: "center",
+          "& .MuiCardHeader-content": { overflow: "hidden" },
+        }}
+        avatar={
+          <Avatar
             src={data.authorPfp}
-            alt={data.author}
-            className={classes.authorImage}
+            sx={{
+              width: { xs: 40, sm: 60 },
+              height: { xs: 40, sm: 60 },
+              border: `1px solid ${COLORS.darkBorder}`,
+            }}
           />
-          <a className={classes.authorName}>{data.author}</a>
-        </div>
-        <span className={classes.date}>{correctDate}</span>
-      </header>
+        }
+        title={
+          <Link
+            sx={{
+              fontSize: { xs: "16px", sm: "22px" },
+              color: "black",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            {data.author}
+          </Link>
+        }
+        action={
+          <Typography
+            sx={{
+              fontSize: { xs: "13px", sm: "15px" },
+              textAlign: "end",
+              mt: 1,
+            }}
+          >
+            {calcDates(data.date)}
+          </Typography>
+        }
+      ></CardHeader>
 
-      <div className={classes.mainContainer}>
-        <img src={data.meme} alt={data.title} className={classes.memeImage} />
-        <div className={classes.infoContainer}>
-          <h3 className={classes.title}>{data.title}</h3>
-          <p className={classes.description}>
+      <Box sx={{ width: "100%" }}>
+        {!isLoaded && (
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            sx={{
+              bgcolor: "rgba(0, 0, 0, 0.11)",
+              height: { xs: "350px", md: "450px" },
+            }}
+            animation="wave"
+          />
+        )}
+        <CardMedia
+          component="img"
+          ref={imageRef}
+          image={data.meme}
+          alt={data.title}
+          loading="lazy"
+          onLoad={handleLoad}
+          onError={handleError}
+          sx={{
+            width: "100%",
+            height: isLoaded && !isError ? "auto" : 0,
+            display: "block",
+          }}
+        />
+        <CardContent sx={{ px: { xs: "15px", sm: "25px" }, py: 2 }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: { xs: "20px", sm: "25px" },
+              fontFamily: "JetBrains_Bold",
+              textDecoration: "underline",
+              mb: 4,
+            }}
+          >
+            {data.title}
+          </Typography>
+
+          <Typography
+            sx={{
+              fontSize: { xs: "15px", sm: "18px" },
+              display: "inline",
+            }}
+          >
             {isTooLongDescription
               ? updateText({ description: data.description, limit: limit })
               : data.description}
-          </p>
+          </Typography>
           {isTooLongDescription && (
-            <a className={classes.readContinue}>Читать полностью...</a>
+            <Link
+              sx={{
+                display: "block",
+                mt: 1,
+                fontFamily: "JetBrains_Bold",
+                color: COLORS.secondaryPurple,
+                fontSize: { xs: "17px", sm: "20px" },
+                cursor: "pointer",
+                textDecoration: "none",
+              }}
+            >
+              Читать полностью...
+            </Link>
           )}
-        </div>
-      </div>
+        </CardContent>
+      </Box>
 
-      <footer className={classes.footerContainer}>
-        <div className={classes.footerIconConrainer}>
+      <CardActions
+        sx={{
+          px: { xs: "5px", sm: "20px" },
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <HeartButton
             isLiked={isLiked}
             onClick={() => {
@@ -66,15 +191,24 @@ export const PostCard = ({ data }: PostCardProps) => {
               setIsLiked((prev) => !prev);
             }}
           />
-          <span className={classes.likes}>{likes}</span>
-        </div>
-        <div className={classes.footerIconConrainer}>
+          <Typography
+            sx={{
+              color: COLORS.mainPurple,
+              fontSize: { xs: "18px", sm: "20px" },
+            }}
+          >
+            {likes}
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <CommentButton onClick={() => {}} />
           {data.commentsCount > 0 && (
-            <span className={classes.comments}>{data.commentsCount}</span>
+            <Typography sx={{ fontSize: { xs: "18px", sm: "20px" } }}>
+              {data.commentsCount}
+            </Typography>
           )}
-        </div>
-      </footer>
-    </article>
+        </Box>
+      </CardActions>
+    </Card>
   );
 };

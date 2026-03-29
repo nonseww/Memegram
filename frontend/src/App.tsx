@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { MainLayout } from "./layouts/MainLayout";
 import { ThemeProvider } from "./services/ThemeProvider";
+import { Loader } from "./ui/Loader";
 import "./styles/_fonts.scss";
 
 const Main = lazy(() =>
@@ -21,7 +22,7 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Suspense fallback={<div>Грузим...</div>}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route element={<MainLayout />}>
               <Route path="/" element={<Main />} />

@@ -1,10 +1,8 @@
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import v from "/src/styles/_variables.module.scss";
 import { Icon } from "../../ui";
 import type { icon } from "../../types/icon";

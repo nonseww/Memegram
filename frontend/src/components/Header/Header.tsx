@@ -1,5 +1,8 @@
 import LogoImage from "./assets/logo_image.svg";
-import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
 import Memegram from "./assets/Memegram.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import v from "/src/styles/_variables.module.scss";
