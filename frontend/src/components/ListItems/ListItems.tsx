@@ -8,14 +8,26 @@ import {
 import v from "/src/styles/_variables.module.scss";
 import { Icon } from "../../ui";
 import type { icon } from "../../types/icon";
+import type { ResponsiveStyleValue } from "@mui/system";
 
 interface ListItemsProps {
   itemsList: icon[];
   onClick?: () => void;
+  direction?: ResponsiveStyleValue<"row" | "column">;
 }
 
-export const ListItems = ({ itemsList, onClick }: ListItemsProps) => (
-  <List>
+export const ListItems = ({
+  itemsList,
+  onClick,
+  direction,
+}: ListItemsProps) => (
+  <List
+    sx={{
+      display: "flex",
+      flexDirection: direction || "column",
+      gap: direction === "row" ? 2 : 1,
+    }}
+  >
     {itemsList.map(({ id, src, alt, href, label }) => (
       <ListItem key={alt} disablePadding>
         <ListItemButton

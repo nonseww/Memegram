@@ -15,7 +15,6 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         bgcolor: v.mainYellow,
-        boxShadow: "none",
         borderBottom: `1px solid ${v.mainBorder}`,
       }}
     >
@@ -30,22 +29,26 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
           href="/"
           sx={{ display: "flex", alignItems: "center" }}
         >
-          <img
+          <Box
+            component="img"
             src={LogoImage}
             alt="logo"
-            style={{ height: 40, marginRight: 20 }}
+            sx={{ height: { xs: 40, lg: 50 }, mr: 3 }}
           />
-          <img src={Memegram} alt="Memegram" style={{ height: 30 }} />
+          <Box
+            component="img"
+            src={Memegram}
+            alt="Memegram"
+            sx={{ height: { xs: 20, md: 25, lg: 28 } }}
+          />
         </Box>
 
         <IconButton
           onClick={onMenuClick}
           sx={{
-            mr: 2,
-            display: {
-              xs: "block",
-              lg: "none",
-            },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
           size="large"
         >

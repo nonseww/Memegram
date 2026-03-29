@@ -1,5 +1,4 @@
 @use "/src/styles/variables.module";
-@use "/src/styles/mixins";
 
 .circle {
   border-radius: 50%;
@@ -68,7 +67,7 @@
 
   :global(.MuiInput-root) {
     input {
-      @include mixins.reset-autofill(
+      @include reset-autofill(
         variables.$design-yellow-color,
         variables.$text-color
       );
@@ -137,7 +136,7 @@
   margin-inline: auto 20px;
 }
 
-@media (min-width: 468px) {
+@include media-request("xs") {
   .title {
     font-size: 30px;
   }
@@ -148,7 +147,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@include media-request("sm") {
   .circleBigYellow {
     height: 130dvh;
     width: 160dvw;
@@ -181,7 +180,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@include media-request("md") {
   .formWrapper {
     border: none;
     width: 100dvw;
@@ -218,7 +217,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@include media-request("lg") {
   .circleBigYellow {
     width: 1300px;
     right: -400px;

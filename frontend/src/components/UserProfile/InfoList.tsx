@@ -7,6 +7,7 @@ interface InfoListProps {
 
 export const InfoList = ({ labels }: InfoListProps) => (
   <ListItems
+    direction={{ xs: "column", md: "row" }}
     itemsList={PROFILE_INFO_ITEMS.map((item) => ({
       ...item,
       label: labels[item.id] || "",

@@ -4,13 +4,12 @@ import {
   Paper,
   Avatar,
   Typography,
-  Button,
   Divider,
   Stack,
   IconButton,
 } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
-import { Edit } from "@mui/icons-material";
+import Edit from "@mui/icons-material/Edit";
 import classes from "./UserProfile.module.scss";
 import { InfoList } from "./InfoList";
 
@@ -20,88 +19,109 @@ interface UserProfileProps {
 
 export const UserProfile = ({ userData }: UserProfileProps) => {
   return (
-    <Box>
-      <Paper elevation={3} sx={{ p: 1, borderRadius: 4, position: "relative" }}>
-        <Box
-          className={classes.backgroundImage}
-          sx={{
-            width: "100%",
-            backgroundImage: `url(${userData.imageUrl})`,
-            position: "relative",
-          }}
-        />
+    <Paper
+      elevation={3}
+      sx={{
+        p: 1,
+        borderRadius: 4,
+        position: "relative",
+        width: { lg: "70dvw" },
+        maxWidth: "1100px",
+        mx: { lg: "auto" },
+      }}
+    >
+      <Box
+        className={classes.backgroundImage}
+        sx={{
+          width: "100%",
+          backgroundImage: `url(${userData.imageUrl})`,
+          position: "relative",
+          height: { xs: "150px", md: "200px" },
+        }}
+      />
 
-        <Box sx={{ position: "relative", px: 2 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-              position: "relative",
-              mt: -6,
-            }}
-          >
+      <Box
+        sx={{
+          position: "relative",
+          px: 2,
+          display: "flex",
+          flexDirection: "column",
+          gap: { xs: 3, lg: 4 },
+        }}
+      >
+        <IconButton
+          sx={{ position: "absolute", right: 10, top: 20, zIndex: 10 }}
+          color="primary"
+        >
+          <Edit />
+        </IconButton>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", lg: "row" },
+            alignItems: { xs: "center", lg: "flex-end" },
+            justifyContent: { xs: "center", lg: "flex-start" },
+            position: "relative",
+            mt: -6,
+            gap: { lg: 4 },
+          }}
+        >
+          <Box sx={{ position: "relative " }}>
             <Avatar
               src={userData.avatarUrl}
               sx={{
                 border: "2px solid black",
                 boxShadow: 3,
+                height: { xs: "80px", md: "100px", lg: "150px" },
+                width: { xs: "80px", md: "100px", lg: "150px" },
               }}
-              className={classes.avatar}
             />
-            <IconButton
-              sx={{ position: "absolute", right: 0, bottom: -10 }}
-              color="primary"
-            >
-              <Edit />
-            </IconButton>
           </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                width: "fit-content",
-                mt: 2,
-                mx: "auto",
-              }}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "fit-content",
+              mt: 2,
+              mx: { xs: "auto", lg: 0 },
+              pb: { xs: 0, lg: 2 },
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{ width: "100%", textAlign: "center" }}
             >
-              <Typography
-                variant="h5"
-                sx={{ width: "100%", textAlign: "center" }}
-              >
-                {userData.name}
-              </Typography>
-              <Typography
-                color="text.secondary"
-                sx={{ ml: "auto" }}
-                variant="body2"
-              >
-                @{userData.username}
-              </Typography>
-            </Box>
-
-            <Stack direction="column" spacing={1}>
-              <Typography variant="h6" color="primary">
-                О себе:
-              </Typography>
-              <Typography>{userData.aboutText}</Typography>
-              <Divider sx={{ borderColor: "primary.main" }} />
-            </Stack>
-
-            <Stack>
-              <InfoList
-                labels={{
-                  posts: `${userData.postsCount} posts`,
-                  followers: `${userData.followersCount} followers`,
-                  followings: `${userData.followingsCount} followings`,
-                }}
-              />
-            </Stack>
+              {userData.name}
+            </Typography>
+            <Typography
+              color="text.secondary"
+              sx={{ ml: "auto" }}
+              variant="body2"
+            >
+              @{userData.username}
+            </Typography>
           </Box>
         </Box>
-      </Paper>
-    </Box>
+
+        <Stack direction="column" spacing={1}>
+          <Typography variant="h6" color="primary">
+            О себе:
+          </Typography>
+          <Typography>{userData.aboutText}</Typography>
+          <Divider sx={{ borderColor: "primary.main" }} />
+        </Stack>
+
+        <Stack>
+          <InfoList
+            labels={{
+              posts: `${userData.postsCount} posts`,
+              followers: `${userData.followersCount} followers`,
+              followings: `${userData.followingsCount} followings`,
+            }}
+          />
+        </Stack>
+      </Box>
+    </Paper>
   );
 };
