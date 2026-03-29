@@ -1,16 +1,14 @@
 import classes from "./LoginForm.module.scss";
-import { Button } from "../../ui/Button";
-import type { formData } from "../../types/formData";
-import {
-  Box,
-  Typography,
-  TextField,
-  Link,
-  FormControlLabel,
-  Checkbox,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
+import { Button } from "@/ui/Button";
+import type { formData } from "@/types/formData";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";

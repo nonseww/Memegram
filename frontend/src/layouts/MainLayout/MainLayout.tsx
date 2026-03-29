@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "../../components/Header";
-import { Box, Toolbar } from "@mui/material";
-import { MobileDrawer, DesktopSidebar } from "../../components/Navigation";
-import v from "/src/styles/_variables.module.scss";
+import { Header } from "@/components/Header";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import { MobileDrawer, DesktopSidebar } from "@/components/Navigation";
 
 const DRAWER_WIDTH = 280;
 

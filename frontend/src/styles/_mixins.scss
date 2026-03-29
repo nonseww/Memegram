@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @mixin reset-autofill($bgColor, $textColor) {
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
@@ -26,5 +28,33 @@
   &:focus-visible {
     outline: 2px solid rgba(138, 43, 226, 0.5);
     border-radius: 50%;
+  }
+}
+
+@mixin background-image-styles {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+$breakpoints: (
+  "xs": 480px,
+  "sm": 768px,
+  "md": 1024px,
+  "lg": 1200px,
+);
+
+@mixin media-request($breakpoint) {
+  @if map.has-key($map: $breakpoints, $key: $breakpoint) {
+    $value: map.get(
+      $map: $breakpoints,
+      $key: $breakpoint,
+    );
+
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Неизвестный брейкпоинт: #{$breakpoint}";
   }
 }

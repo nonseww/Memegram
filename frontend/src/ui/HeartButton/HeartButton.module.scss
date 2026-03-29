@@ -1,4 +1,3 @@
-@use "/src/styles/mixins";
 @use "/src/styles/variables.module";
 
 .heartButton {
@@ -11,7 +10,7 @@
   width: 45px;
   height: 45px;
 
-  @include mixins.svg-styles;
+  @include svg-styles;
 }
 
 .heartIcon {

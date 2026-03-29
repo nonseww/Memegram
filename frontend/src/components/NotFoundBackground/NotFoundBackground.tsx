@@ -1,5 +1,6 @@
 import classes from "./NotFoundBackground.module.scss";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export const NotFoundBackground = () => (
   <Box className={classes.background}>

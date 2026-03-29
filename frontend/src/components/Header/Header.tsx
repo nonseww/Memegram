@@ -1,8 +1,11 @@
 import LogoImage from "./assets/logo_image.svg";
-import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
 import Memegram from "./assets/Memegram.svg";
 import MenuIcon from "@mui/icons-material/Menu";
-import v from "/src/styles/_variables.module.scss";
+import v from "@/styles/_variables.module.scss";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -15,7 +18,6 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         bgcolor: v.mainYellow,
-        boxShadow: "none",
         borderBottom: `1px solid ${v.mainBorder}`,
       }}
     >
@@ -30,22 +32,26 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
           href="/"
           sx={{ display: "flex", alignItems: "center" }}
         >
-          <img
+          <Box
+            component="img"
             src={LogoImage}
             alt="logo"
-            style={{ height: 40, marginRight: 20 }}
+            sx={{ height: { xs: 40, lg: 50 }, mr: 3 }}
           />
-          <img src={Memegram} alt="Memegram" style={{ height: 30 }} />
+          <Box
+            component="img"
+            src={Memegram}
+            alt="Memegram"
+            sx={{ height: { xs: 20, md: 25, lg: 28 } }}
+          />
         </Box>
 
         <IconButton
           onClick={onMenuClick}
           sx={{
-            mr: 2,
-            display: {
-              xs: "block",
-              lg: "none",
-            },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
           size="large"
         >

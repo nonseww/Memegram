@@ -1,6 +1,7 @@
-import { Drawer, Box } from "@mui/material";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
 import { NavigationList } from "./NavigationList";
-import v from "/src/styles/_variables.module.scss";
+import v from "@/styles/_variables.module.scss";
 
 interface MobileDrawerProps {
   isOpen: boolean;

@@ -1,4 +1,4 @@
-import { NotFoundBackground } from "../components/NotFoundBackground";
+import { NotFoundBackground } from "@/components/NotFoundBackground";
 
 export const NotFound = () => {
   return (
