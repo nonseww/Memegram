@@ -17,6 +17,7 @@ import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import v from "/src/styles/_variables.module.scss";
 import { useImageLazyLoad } from "../../hooks/useImageLazyLoad";
+import { useInView } from "../../hooks/useInView";
 
 interface PostCardProps {
   data: Post;
@@ -31,8 +32,9 @@ export const PostCard = ({ data }: PostCardProps) => {
   });
   const [isLiked, setIsLiked] = useState(data.isLiked);
   const [likes, setLikes] = useState(data.likesCount);
+  const { isInView, containerRef } = useInView("300px");
   const { isLoaded, isError, imageRef, handleLoad, handleError } =
-    useImageLazyLoad();
+    useImageLazyLoad(isInView ? data.meme : "");
 
   const COLORS = {
     cardColor: v.cardColor,
@@ -47,8 +49,10 @@ export const PostCard = ({ data }: PostCardProps) => {
   return (
     <Card
       component="article"
+      ref={containerRef}
       sx={{
         width: "100%",
+        minHeight: "450px",
         bgcolor: COLORS.cardColor,
         borderRadius: "25px",
         border: `1px solid ${COLORS.mainBorder}`,
@@ -105,7 +109,7 @@ export const PostCard = ({ data }: PostCardProps) => {
       ></CardHeader>
 
       <Box sx={{ width: "100%" }}>
-        {!isLoaded && (
+        {(!isInView || !isLoaded) && (
           <Skeleton
             variant="rectangular"
             width="100%"
@@ -116,20 +120,22 @@ export const PostCard = ({ data }: PostCardProps) => {
             animation="wave"
           />
         )}
-        <CardMedia
-          component="img"
-          ref={imageRef}
-          image={data.meme}
-          alt={data.title}
-          loading="lazy"
-          onLoad={handleLoad}
-          onError={handleError}
-          sx={{
-            width: "100%",
-            height: isLoaded && !isError ? "auto" : 0,
-            display: "block",
-          }}
-        />
+        {isInView && (
+          <CardMedia
+            component="img"
+            ref={imageRef}
+            image={data.meme}
+            alt={data.title}
+            loading="lazy"
+            onLoad={handleLoad}
+            onError={handleError}
+            sx={{
+              width: "100%",
+              height: isLoaded && !isError ? "auto" : 0,
+              display: "block",
+            }}
+          />
+        )}
         <CardContent sx={{ px: { xs: "15px", sm: "25px" }, py: 2 }}>
           <Typography
             variant="h3"
