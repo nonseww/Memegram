@@ -1,6 +1,6 @@
 import classes from "./LoginForm.module.scss";
-import { Button } from "../../ui/Button";
-import type { formData } from "../../types/formData";
+import { Button } from "@/ui/Button";
+import type { formData } from "@/types/formData";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";

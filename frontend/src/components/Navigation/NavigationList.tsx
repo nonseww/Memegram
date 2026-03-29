@@ -1,5 +1,5 @@
-import { ListItems } from "../ListItems";
-import { NAV_ELEMENTS } from "../../data/navigation";
+import { ListItems } from "@/ui/ListItems";
+import { NAV_ELEMENTS } from "@/data/navigation";
 
 export const NavigationList = ({
   onItemClick,

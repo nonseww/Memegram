@@ -1,5 +1,5 @@
-import { PROFILE_INFO_ITEMS } from "../../data/profileInfo";
-import { ListItems } from "../ListItems";
+import { PROFILE_INFO_ITEMS } from "@/data/profileInfo";
+import { ListItems } from "@/ui/ListItems";
 
 interface InfoListProps {
   labels: Record<string, string>;

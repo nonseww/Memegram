@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Memegram from "./assets/Memegram.svg";
 import MenuIcon from "@mui/icons-material/Menu";
-import v from "/src/styles/_variables.module.scss";
+import v from "@/styles/_variables.module.scss";
 
 interface HeaderProps {
   onMenuClick: () => void;

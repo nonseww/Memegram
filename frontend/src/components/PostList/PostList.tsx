@@ -1,5 +1,5 @@
 import { PostCard } from "../PostCard/PostCard";
-import type { Post } from "../../types/post";
+import type { Post } from "@/types/post";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";

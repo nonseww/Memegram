@@ -1,4 +1,4 @@
-import type { userProfile } from "../../types/userData";
+import type { userProfile } from "@/types/userData";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";

@@ -15,9 +15,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
-import v from "/src/styles/_variables.module.scss";
-import { useImageLazyLoad } from "../../hooks/useImageLazyLoad";
-import { useInView } from "../../hooks/useInView";
+import v from "@/styles/_variables.module.scss";
+import { useImageLazyLoad } from "@/hooks/useImageLazyLoad";
+import { useInView } from "@/hooks/useInView";
 
 interface PostCardProps {
   data: Post;
@@ -136,7 +136,13 @@ export const PostCard = ({ data }: PostCardProps) => {
             }}
           />
         )}
-        <CardContent sx={{ px: { xs: "15px", sm: "25px" }, py: 2 }}>
+        <CardContent
+          sx={{
+            px: { xs: "15px", sm: "25px" },
+            pt: 3,
+            "&:last-child": { pb: 1 },
+          }}
+        >
           <Typography
             variant="h3"
             sx={{
