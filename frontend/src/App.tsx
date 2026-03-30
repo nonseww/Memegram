@@ -11,6 +11,11 @@ const Main = lazy(() =>
 const Profile = lazy(() =>
   import("./pages/Profile").then((module) => ({ default: module.Profile })),
 );
+const ProfileEditPage = lazy(() =>
+  import("./pages/ProfileEditPage").then((module) => ({
+    default: module.ProfileEditPage,
+  })),
+);
 const Login = lazy(() =>
   import("./pages/Login").then((module) => ({ default: module.Login })),
 );
@@ -27,6 +32,7 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<Main />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile-edit" element={<ProfileEditPage />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
