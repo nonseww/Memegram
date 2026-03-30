@@ -7,24 +7,30 @@ import type { icon } from "../types/icon";
 export const NAV_ELEMENTS: icon[] = [
   {
     id: "Профиль",
-    src: CoffeeIcon,
+    src: UserIcon,
     label: "Профиль",
     alt: "Профиль",
     href: "/profile",
   },
   {
     id: "Подписки",
-    src: LogoutIcon,
+    src: SubscriptionsIcon,
     label: "Подписки",
     alt: "Подписки",
     href: "/subscriptions",
   },
   {
     id: "Запостить",
-    src: SubscriptionsIcon,
+    src: CoffeeIcon,
     label: "Запостить",
     alt: "Запостить",
     href: "/post",
   },
-  { id: "Выйти", src: UserIcon, label: "Выйти", alt: "Выйти", href: "/logout" },
+  {
+    id: "Выйти",
+    src: LogoutIcon,
+    label: "Выйти",
+    alt: "Выйти",
+    href: "/logout",
+  },
 ];

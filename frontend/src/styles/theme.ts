@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import v from "@/styles/_variables.module.scss";
 
 export const theme = createTheme({
   typography: {
@@ -6,10 +7,20 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#ff9800",
+      main: v.mainOrange,
+      dark: v.activeButtonColor,
+      contrastText: v.textColor,
     },
     secondary: {
-      main: "#8a2be2",
+      main: v.mainPurple,
+      light: v.secondaryPurple,
+    },
+    background: {
+      default: v.bg,
+    },
+    text: {
+      primary: v.textColor,
+      secondary: v.textPlaceholder,
     },
   },
 });

@@ -6,17 +6,20 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Edit from "@mui/icons-material/Edit";
 import { InfoList } from "./InfoList";
 import { LazyImageGuard } from "@/ui/LazyImageGuard";
 import Skeleton from "@mui/material/Skeleton";
+import { useNavigate } from "react-router-dom";
 
 interface UserProfileProps {
   userData: userProfile;
 }
 
 export const UserProfile = ({ userData }: UserProfileProps) => {
+  const navigate = useNavigate();
+  const handleEdit = () => navigate("/profile-edit");
+
   return (
     <Paper
       elevation={3}
@@ -72,6 +75,7 @@ export const UserProfile = ({ userData }: UserProfileProps) => {
         <IconButton
           sx={{ position: "absolute", right: 10, top: 20, zIndex: 10 }}
           color="primary"
+          onClick={handleEdit}
         >
           <Edit />
         </IconButton>
@@ -135,9 +139,9 @@ export const UserProfile = ({ userData }: UserProfileProps) => {
         <Stack>
           <InfoList
             labels={{
-              posts: `${userData.postsCount} posts`,
-              followers: `${userData.followersCount} followers`,
-              followings: `${userData.followingsCount} followings`,
+              posts: `${userData.postsCount} постов`,
+              followers: `${userData.followersCount} подписчиков`,
+              followings: `${userData.followingsCount} подписок`,
             }}
           />
         </Stack>

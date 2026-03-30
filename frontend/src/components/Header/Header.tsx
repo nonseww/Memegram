@@ -49,7 +49,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         <IconButton
           onClick={onMenuClick}
           sx={{
-            display: "flex",
+            display: { xs: "flex", lg: "none" },
             justifyContent: "center",
             alignItems: "center",
           }}
