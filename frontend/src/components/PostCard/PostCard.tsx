@@ -5,7 +5,7 @@ import { updateText } from "@/utils/updateText";
 import { HeartButton } from "@/ui/HeartButton";
 import { CommentButton } from "@/ui/CommentButton";
 import { useState } from "react";
-import Card from "@mui/material/Card";
+import { StyledCard } from "@/ui/StyledCard";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -43,24 +43,7 @@ export const PostCard = ({ data }: PostCardProps) => {
   //useTransition
 
   return (
-    <Card
-      component="article"
-      sx={{
-        width: "100%",
-        minHeight: "450px",
-        bgcolor: COLORS.cardColor,
-        borderRadius: "25px",
-        border: `1px solid ${COLORS.mainBorder}`,
-        boxShadow: "0 4px 12px rgba(0, 0, 0, 1)",
-        py: "10px",
-        pb: "15px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-        transition: "transform 0.2s",
-        "&:hover": { transform: "translateY(-4px)" },
-      }}
-    >
+    <StyledCard>
       <CardHeader
         sx={{
           px: { xs: "15px", sm: "25px" },
@@ -239,6 +222,6 @@ export const PostCard = ({ data }: PostCardProps) => {
           )}
         </Box>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 };

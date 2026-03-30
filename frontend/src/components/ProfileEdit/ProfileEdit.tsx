@@ -1,25 +1,25 @@
 import Paper from "@mui/material/Paper";
 import { LazyImageGuard } from "@/ui/LazyImageGuard";
-import type { userProfile } from "@/types/userData";
+import type { UserProfile } from "@/types/userData";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
+import { MultilineTextField } from "@/ui/MultilineTextField";
 import Button from "@mui/material/Button";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Overlay } from "@/ui/Overlay";
 import { PhotoCamera } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 
 interface UserProfileProps {
-  userData: userProfile;
+  userData: UserProfile;
 }
 
 const MAXLENGTH = 300;
 
 export const ProfileEdit = ({ userData }: UserProfileProps) => {
-  const [text, setText] = useState<string>(userData.aboutText);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -126,31 +126,9 @@ export const ProfileEdit = ({ userData }: UserProfileProps) => {
         </Box>
 
         <TextField label="Имя:" fullWidth defaultValue={userData.name} />
-        <TextField
-          label="О себе:"
-          fullWidth
-          multiline
-          rows={4}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          slotProps={{
-            htmlInput: {
-              maxLength: MAXLENGTH,
-              sx: {
-                pb: 2,
-              },
-            },
-            formHelperText: {
-              sx: {
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                textAlign: "right",
-                color: text.length >= MAXLENGTH ? "error.main" : "text.main",
-              },
-            },
-          }}
-          helperText={`${text.length}/${MAXLENGTH}`}
+        <MultilineTextField
+          maxLength={MAXLENGTH}
+          initValue={userData.aboutText}
         />
 
         <Box

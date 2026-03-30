@@ -1,4 +1,4 @@
-import type { userProfile } from "@/types/userData";
+import type { UserProfile as UserProfileInterface } from "@/types/userData";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
@@ -13,7 +13,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 
 interface UserProfileProps {
-  userData: userProfile;
+  userData: UserProfileInterface;
 }
 
 export const UserProfile = ({ userData }: UserProfileProps) => {

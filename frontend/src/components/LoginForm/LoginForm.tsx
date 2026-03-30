@@ -1,6 +1,6 @@
 import classes from "./LoginForm.module.scss";
 import { Button } from "@/ui/Button";
-import type { formData } from "@/types/formData";
+import type { FormData } from "@/types/formData";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -20,7 +20,7 @@ export const LoginForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<formData>({
+  } = useForm<FormData>({
     defaultValues: {
       username: "",
       name: "",
@@ -31,7 +31,7 @@ export const LoginForm = () => {
   });
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onSubmit = (data: formData) => {
+  const onSubmit = (data: FormData) => {
     console.log("Готово", data);
   };
 
