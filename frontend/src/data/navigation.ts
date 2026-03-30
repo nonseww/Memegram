@@ -24,7 +24,7 @@ export const NAV_ELEMENTS: icon[] = [
     src: CoffeeIcon,
     label: "Запостить",
     alt: "Запостить",
-    href: "/post",
+    href: "/new-post",
   },
   {
     id: "Выйти",

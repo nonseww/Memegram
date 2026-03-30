@@ -1,4 +1,4 @@
-export interface userProfile {
+export interface UserProfile {
   name: string;
   username: string;
   postsCount: number;

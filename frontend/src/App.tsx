@@ -19,8 +19,14 @@ const ProfileEditPage = lazy(() =>
 const Login = lazy(() =>
   import("./pages/Login").then((module) => ({ default: module.Login })),
 );
+const Posts = lazy(() =>
+  import("./pages/Posts").then((module) => ({ default: module.Posts })),
+);
 const NotFound = lazy(() =>
   import("./pages/NotFound").then((module) => ({ default: module.NotFound })),
+);
+const NewPost = lazy(() =>
+  import("./pages/NewPost").then((module) => ({ default: module.NewPost })),
 );
 
 function App() {
@@ -33,6 +39,8 @@ function App() {
               <Route path="/" element={<Main />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile-edit" element={<ProfileEditPage />} />
+              <Route path="/posts" element={<Posts />} />
+              <Route path="/new-post" element={<NewPost />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

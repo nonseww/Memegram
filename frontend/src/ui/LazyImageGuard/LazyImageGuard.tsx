@@ -1,6 +1,6 @@
 import { useImageLazyLoad } from "@/hooks/useImageLazyLoad";
 import { useInView } from "@/hooks/useInView";
-import { Box, display, positions } from "@mui/system";
+import Box from "@mui/material/Box";
 import type { ReactNode } from "react";
 
 interface LazyImageGuardProps {
