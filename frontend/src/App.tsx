@@ -4,6 +4,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import { ThemeProvider } from "./services/ThemeProvider";
 import { Loader } from "./ui/Loader";
 import "./styles/_fonts.scss";
+import { UpsertPost } from "./components/UpsertPost";
 
 const Main = lazy(() =>
   import("./pages/Main").then((module) => ({ default: module.Main })),
@@ -41,6 +42,7 @@ function App() {
               <Route path="/profile-edit" element={<ProfileEditPage />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="/new-post" element={<NewPost />} />
+              <Route path="/edit-post/:id" element={<UpsertPost />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

@@ -6,21 +6,29 @@ import { MultilineTextField } from "@/ui/MultilineTextField";
 import CardActions from "@mui/material/CardActions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Typography from "@mui/material/Typography";
 import { Overlay } from "@/ui/Overlay";
-import { useRef } from "react";
-
-interface UpsertPostProps {
-  data?: UpsertPostInterface;
-}
+import { useRef, useState } from "react";
 
 const MAXLENGTH = 3000;
 
-export const UpsertPost = ({ data }: UpsertPostProps) => {
+export const UpsertPost = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
+  const { id } = useParams();
+  const postFromState: UpsertPostInterface = location.state?.post;
+  const [title, setTitle] = useState<string>(postFromState?.title || "");
+  const [description, setDescription] = useState<string>(
+    postFromState?.description || "",
+  );
+  const [meme, setMeme] = useState<string>(postFromState?.meme || "");
+
+  const handleSave = async () => {
+    navigate(-1);
+  };
 
   return (
     <Box sx={{ width: { xs: "85vw", sm: "500px" }, mx: "auto" }}>
@@ -39,7 +47,8 @@ export const UpsertPost = ({ data }: UpsertPostProps) => {
             label="Заголовок"
             fullWidth
             sx={{ boxShadow: 2 }}
-            defaultValue={data?.title || ""}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
           <Box
@@ -53,11 +62,11 @@ export const UpsertPost = ({ data }: UpsertPostProps) => {
             onClick={() => inputRef.current?.click()}
           >
             <input type="file" hidden ref={inputRef} accept="image/*" />
-            {data?.meme ? (
+            {meme ? (
               <>
                 <Box
                   component="img"
-                  src={data?.meme}
+                  src={meme}
                   sx={{ width: "100%", objectFit: "cover", boxShadow: 4 }}
                 />
                 <Overlay>
@@ -92,7 +101,8 @@ export const UpsertPost = ({ data }: UpsertPostProps) => {
 
           <MultilineTextField
             maxLength={MAXLENGTH}
-            initValue={data?.description}
+            value={description}
+            onChange={(val) => setDescription(val)}
           />
         </CardContent>
 
