@@ -9,4 +9,5 @@ export interface Post {
   isLiked: boolean;
   likesCount: number;
   commentsCount: number;
+  isEditable: boolean;
 }
