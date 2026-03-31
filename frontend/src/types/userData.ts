@@ -1,4 +1,5 @@
 export interface UserProfile {
+  id: number;
   name: string;
   username: string;
   postsCount: number;
@@ -7,4 +8,5 @@ export interface UserProfile {
   imageUrl: string;
   avatarUrl: string;
   aboutText: string;
+  isOwnProfile: boolean;
 }

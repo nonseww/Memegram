@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 
 export const useImageLazyLoad = (src: string) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!src) return;
     const img = imageRef.current;
 
@@ -20,6 +20,8 @@ export const useImageLazyLoad = (src: string) => {
 
     setIsLoaded(false);
     setIsError(false);
+
+    // очистка кэша (10)
   }, [src]);
 
   const handleLoad = () => {

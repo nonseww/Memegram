@@ -72,13 +72,15 @@ export const UserProfile = ({ userData }: UserProfileProps) => {
           gap: { xs: 3, lg: 4 },
         }}
       >
-        <IconButton
-          sx={{ position: "absolute", right: 10, top: 20, zIndex: 10 }}
-          color="primary"
-          onClick={handleEdit}
-        >
-          <Edit />
-        </IconButton>
+        {userData.isOwnProfile && (
+          <IconButton
+            sx={{ position: "absolute", right: 10, top: 20, zIndex: 10 }}
+            color="primary"
+            onClick={handleEdit}
+          >
+            <Edit />
+          </IconButton>
+        )}
         <Box
           sx={{
             display: "flex",

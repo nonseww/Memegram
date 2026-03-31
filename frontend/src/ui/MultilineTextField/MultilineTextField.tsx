@@ -3,15 +3,15 @@ import { useState, useMemo } from "react";
 
 interface MultilineTextFieldProps {
   maxLength?: number;
-  initValue?: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 export const MultilineTextField = ({
   maxLength,
-  initValue,
+  value,
+  onChange,
 }: MultilineTextFieldProps) => {
-  const [text, setText] = useState<string>(initValue ?? "");
-
   const memoSlotProps = useMemo(
     () => ({
       htmlInput: {
@@ -27,11 +27,11 @@ export const MultilineTextField = ({
           right: 0,
           textAlign: "right",
           color:
-            maxLength && text.length >= maxLength ? "error.main" : "text.main",
+            maxLength && value.length >= maxLength ? "error.main" : "text.main",
         },
       },
     }),
-    [maxLength, text.length >= (maxLength || 0)],
+    [maxLength, value.length >= (maxLength || 0)],
   );
 
   return (
@@ -40,10 +40,10 @@ export const MultilineTextField = ({
       fullWidth
       multiline
       rows={4}
-      value={text}
-      onChange={(e) => setText(e.target.value)}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
       slotProps={memoSlotProps}
-      helperText={maxLength && `${text.length}/${maxLength}`}
+      helperText={maxLength && `${value.length}/${maxLength}`}
       sx={{ boxShadow: 4 }}
     />
   );

@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -29,10 +30,12 @@ export const LoginForm = () => {
       agreement: false,
     },
   });
+  const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onSubmit = (data: FormData) => {
     console.log("Готово", data);
+    navigate("/");
   };
 
   return (

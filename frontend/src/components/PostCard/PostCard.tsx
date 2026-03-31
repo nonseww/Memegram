@@ -19,6 +19,7 @@ import v from "@/styles/_variables.module.scss";
 import { LazyImageGuard } from "@/ui/LazyImageGuard";
 import IconButton from "@mui/material/IconButton";
 import Edit from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router-dom";
 
 interface PostCardProps {
   data: Post;
@@ -33,6 +34,7 @@ export const PostCard = ({ data }: PostCardProps) => {
   });
   const [isLiked, setIsLiked] = useState(data.isLiked);
   const [likes, setLikes] = useState(data.likesCount);
+  const navigate = useNavigate();
 
   const COLORS = {
     cardColor: v.cardColor,
@@ -40,6 +42,14 @@ export const PostCard = ({ data }: PostCardProps) => {
     darkBorder: "#bdbdbd",
     mainPurple: "#8a2be2",
     secondaryPurple: "#7b1fa2",
+  };
+
+  const handleEdit = () => {
+    navigate(`/edit-post/${data.id}`, { state: { post: data } });
+  };
+
+  const handleNavToProfile = () => {
+    navigate(`/profile/${data.author_id}`);
   };
 
   //useTransition
@@ -94,6 +104,7 @@ export const PostCard = ({ data }: PostCardProps) => {
         }
         title={
           <Link
+            onClick={handleNavToProfile}
             sx={{
               fontSize: { xs: "16px", sm: "22px" },
               color: "black",
@@ -123,7 +134,7 @@ export const PostCard = ({ data }: PostCardProps) => {
               {calcDates(data.date)}
             </Typography>
             {data.isEditable && (
-              <IconButton onClick={() => {}} sx={{ ml: "auto" }}>
+              <IconButton onClick={handleEdit} sx={{ ml: "auto" }}>
                 <Edit />
               </IconButton>
             )}
