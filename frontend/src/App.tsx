@@ -43,6 +43,7 @@ function App() {
               <Route path="/posts" element={<Posts />} />
               <Route path="/new-post" element={<NewPost />} />
               <Route path="/edit-post/:id" element={<UpsertPost />} />
+              <Route path="/profile/:username" element={<Profile />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

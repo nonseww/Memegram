@@ -48,6 +48,10 @@ export const PostCard = ({ data }: PostCardProps) => {
     navigate(`/edit-post/${data.id}`, { state: { post: data } });
   };
 
+  const handleNavToProfile = () => {
+    navigate(`/profile/${data.author_id}`);
+  };
+
   //useTransition
 
   return (
@@ -100,6 +104,7 @@ export const PostCard = ({ data }: PostCardProps) => {
         }
         title={
           <Link
+            onClick={handleNavToProfile}
             sx={{
               fontSize: { xs: "16px", sm: "22px" },
               color: "black",

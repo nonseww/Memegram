@@ -6,6 +6,7 @@ export const MOCK_POSTS: Post[] = [
     title: "Мем с сумкой и сосисками",
     date: new Date().toISOString(),
     author: "Эщкере постер",
+    author_id: 1,
     authorPfp:
       "https://preview.redd.it/ryan-beckford-hackerman-computer-hack-meme-in-hd-using-the-v0-rprze5xd9fk31.png?width=640&crop=smart&auto=webp&s=a07f0ce91d312f4424ef432865458cff8f9ff85e",
     meme: "https://i.pinimg.com/736x/4a/91/20/4a9120f9e9072cfeeb8163776bf2452b.jpg",
@@ -21,6 +22,7 @@ export const MOCK_POSTS: Post[] = [
     title: "Смешно!!!!",
     date: new Date().toISOString(),
     author: "умный человек фото скачать",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/e0/37/43/e03743b1a49e18d04883ecbdf3ec0b35.jpg",
     meme: "https://i.pinimg.com/736x/f4/21/6d/f4216d475eb1c8e97cbf67da212b7c30.jpg",
@@ -35,6 +37,7 @@ export const MOCK_POSTS: Post[] = [
     title: "Ну жиза",
     date: new Date().toISOString(),
     author: "Салдина Мария",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/5f/12/cd/5f12cd846e2305afcc2a8ad68d2975f9.jpg",
     meme: "https://i.pinimg.com/736x/ab/6e/cf/ab6ecf2a16178caea4cde231d79a73e5.jpg",
@@ -50,6 +53,7 @@ export const MOCK_POSTS: Post[] = [
     title: "Котики!!!",
     date: new Date().toISOString(),
     author: "Салдина Мария",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/5f/12/cd/5f12cd846e2305afcc2a8ad68d2975f9.jpg",
     meme: "https://i.pinimg.com/originals/96/d7/cd/96d7cdda7baf60d9669fc34caa1aabc7.jpg",
@@ -64,6 +68,7 @@ export const MOCK_POSTS: Post[] = [
     title: "So true",
     date: new Date().toISOString(),
     author: "nonseww",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
     meme: "https://i.pinimg.com/736x/f2/0c/a1/f20ca11632cd9bb7f6d7068c9844a8ff.jpg",
@@ -78,6 +83,7 @@ export const MOCK_POSTS: Post[] = [
     title: "БОМЖ КОР",
     date: new Date().toISOString(),
     author: "nonseww",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
     meme: "https://i.pinimg.com/474x/0a/cb/a5/0acba50c5632c3ba474ce42d0cad58b0.jpg",
@@ -92,6 +98,7 @@ export const MOCK_POSTS: Post[] = [
     title: "к черту все",
     date: new Date().toISOString(),
     author: "nonseww",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
     meme: "https://i.pinimg.com/736x/30/f8/c8/30f8c887e3f2dd31361cd3fc72d72eb8.jpg",
@@ -106,6 +113,7 @@ export const MOCK_POSTS: Post[] = [
     title: "пока :)",
     date: new Date().toISOString(),
     author: "nonseww",
+    author_id: 1,
     authorPfp:
       "https://i.pinimg.com/736x/6e/ac/5b/6eac5beb19bae979766738edbb229ca7.jpg",
     meme: "https://i.pinimg.com/736x/d7/b1/f6/d7b1f66e59ae551afbe94c61ec3ac6dc.jpg",

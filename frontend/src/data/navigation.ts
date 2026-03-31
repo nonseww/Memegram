@@ -2,9 +2,9 @@ import CoffeeIcon from "/src/assets/svgs/Coffee.svg";
 import LogoutIcon from "/src/assets/svgs/Logout.svg";
 import SubscriptionsIcon from "/src/assets/svgs/Subscriptions.svg";
 import UserIcon from "/src/assets/svgs/User.svg";
-import type { icon } from "../types/icon";
+import type { Icon } from "../types/icon";
 
-export const NAV_ELEMENTS: icon[] = [
+export const NAV_ELEMENTS: Icon[] = [
   {
     id: "Профиль",
     src: UserIcon,
@@ -31,6 +31,6 @@ export const NAV_ELEMENTS: icon[] = [
     src: LogoutIcon,
     label: "Выйти",
     alt: "Выйти",
-    href: "/logout",
+    href: "/login",
   },
 ];

@@ -4,6 +4,7 @@ export interface Post {
   date: string;
   author: string;
   authorPfp: string;
+  author_id: number;
   meme: string;
   description: string;
   isLiked: boolean;
