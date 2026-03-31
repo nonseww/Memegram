@@ -14,6 +14,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: false,
     likesCount: 10,
     commentsCount: 1,
+    isEditable: false,
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: true,
     likesCount: 2,
     commentsCount: 0,
+    isEditable: false,
   },
   {
     id: 3,
@@ -41,6 +43,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: true,
     likesCount: 8751530,
     commentsCount: 14511,
+    isEditable: false,
   },
   {
     id: 4,
@@ -54,6 +57,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: false,
     likesCount: 7,
     commentsCount: 11,
+    isEditable: false,
   },
   {
     id: 5,
@@ -67,6 +71,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: false,
     likesCount: 10,
     commentsCount: 1,
+    isEditable: false,
   },
   {
     id: 6,
@@ -80,6 +85,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: false,
     likesCount: 10,
     commentsCount: 1,
+    isEditable: false,
   },
   {
     id: 7,
@@ -93,6 +99,7 @@ export const MOCK_POSTS: Post[] = [
     isLiked: true,
     likesCount: 10,
     commentsCount: 1,
+    isEditable: false,
   },
   {
     id: 8,
@@ -106,5 +113,6 @@ export const MOCK_POSTS: Post[] = [
     isLiked: true,
     likesCount: 10,
     commentsCount: 1,
+    isEditable: false,
   },
 ];

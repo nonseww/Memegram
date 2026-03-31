@@ -17,6 +17,8 @@ import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import v from "@/styles/_variables.module.scss";
 import { LazyImageGuard } from "@/ui/LazyImageGuard";
+import IconButton from "@mui/material/IconButton";
+import Edit from "@mui/icons-material/Edit";
 
 interface PostCardProps {
   data: Post;
@@ -103,15 +105,29 @@ export const PostCard = ({ data }: PostCardProps) => {
           </Link>
         }
         action={
-          <Typography
+          <Box
             sx={{
-              fontSize: { xs: "13px", sm: "15px" },
-              textAlign: "end",
-              mt: 1,
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
             }}
           >
-            {calcDates(data.date)}
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: "13px", sm: "15px" },
+                textAlign: "end",
+                mt: 1,
+              }}
+            >
+              {calcDates(data.date)}
+            </Typography>
+            {data.isEditable && (
+              <IconButton onClick={() => {}} sx={{ ml: "auto" }}>
+                <Edit />
+              </IconButton>
+            )}
+          </Box>
         }
       ></CardHeader>
 
