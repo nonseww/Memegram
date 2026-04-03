@@ -14,8 +14,10 @@ import { LoginDto } from './dto/login.dto.js';
 import { Post, Body } from '@nestjs/common';
 import type { Response, Request } from 'express';
 import { JwtAuthGuard } from '#/common/guards/jwt-auth.guard.js';
-import { CurrentUser } from '#/common/decorations/current-user.decorator.js';
+import { CurrentUser } from '#/common/decorators/current-user.decorator.js';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -88,6 +90,7 @@ export class AuthController {
     return { message: 'Logged out successfully' };
   }
 
+  @ApiBearerAuth('JWT-auth')
   @UseGuards(JwtAuthGuard)
   @Get('me')
   getMe(@CurrentUser() user) {
