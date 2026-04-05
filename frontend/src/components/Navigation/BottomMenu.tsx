@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { NAV_ELEMENTS } from "@/data/navigation";
 import { Icon } from "@/ui";
-import v from "/src/styles/_variables.module.scss";
 import classes from "./BottomMenu.module.scss";
 
 export const BottomMenu = () => {
@@ -13,7 +12,7 @@ export const BottomMenu = () => {
   return (
     <Box
       sx={{
-        width: { xs: "95vw", mr: 500 },
+        width: { xs: "95vw", md: 600, lg: 800 },
         position: "fixed",
         zIndex: 5,
         bottom: 10,
