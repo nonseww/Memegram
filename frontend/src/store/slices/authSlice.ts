@@ -50,13 +50,28 @@ export const registerThunk = createAsyncThunk(
 export const checkAuthThunk = createAsyncThunk(
   "auth/checkAuth",
   async (_, { rejectWithValue }) => {
-    try {
-      const { accessToken } = await authApi.refresh();
-      localStorage.setItem("accessToken", accessToken);
+    console.log("1. checkAuthThunk STARTED");
 
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      return rejectWithValue("Not authenticated");
+    }
+
+    try {
+      console.log("2. calling refresh...");
+
+      const data = await authApi.refresh();
+      console.log("3. refresh OK:", data);
+
+      localStorage.setItem("accessToken", data.accessToken);
+
+      console.log("4. calling getMe...");
       const user = await authApi.getMe();
+      console.log("5. getMe OK:", user);
+
       return user;
     } catch (error: any) {
+      console.log("6. FAILED:", error?.response?.status, error?.message);
       localStorage.removeItem("accessToken");
       return rejectWithValue("Not authenticated");
     }
@@ -133,10 +148,10 @@ const authSlice = createSlice({
         },
       )
 
-      .addCase(checkAuthThunk.rejected, (state, action) => {
+      .addCase(checkAuthThunk.rejected, (state) => {
         state.user = null;
         state.isLoading = false;
-        state.error = action.error as string;
+        state.error = null;
       });
 
     builder

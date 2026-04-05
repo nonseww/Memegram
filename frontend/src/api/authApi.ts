@@ -1,7 +1,8 @@
-import api from "./axios";
+import api, { API_URL } from "./axios";
 import type { LoginDto } from "@/types/loginDto";
 import type { RegisterDto } from "@/types/registerDto";
 import type { User } from "@/types/user";
+import axios from "axios";
 
 interface authResponse {
   user: User;
@@ -29,7 +30,11 @@ export const authApi = {
   },
 
   refresh: async () => {
-    const { data } = await api.post<{ accessToken: string }>("/auth/refresh");
+    const { data } = await axios.post(
+      `${API_URL}/auth/refresh`,
+      {},
+      { withCredentials: true },
+    );
     return data;
   },
 };

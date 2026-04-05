@@ -5,11 +5,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import v from "/src/styles/_variables.module.scss";
 import { Icon } from "../../ui";
-import type { icon } from "../../types/icon";
+import type { Icon as IconProps } from "../../types/icon";
 import type { ResponsiveStyleValue } from "@mui/system";
 
 interface ListItemsProps {
-  itemsList: icon[];
+  itemsList: IconProps[];
   onClick?: () => void;
   direction?: ResponsiveStyleValue<"row" | "column">;
 }
