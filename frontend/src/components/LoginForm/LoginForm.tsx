@@ -19,7 +19,6 @@ import {
   loginThunk,
   registerThunk,
 } from "@/store/slices/authSlice";
-import { Loader } from "@/ui/Loader";
 
 export const LoginForm = () => {
   const [isRegister, setIsRegister] = useState<boolean>(true);

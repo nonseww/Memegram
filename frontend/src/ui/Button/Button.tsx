@@ -1,3 +1,4 @@
+import CircularProgress from "@mui/material/CircularProgress";
 import classes from "./Button.module.scss";
 import classNames from "classnames";
 
@@ -7,6 +8,7 @@ interface ButtonProps {
   className?: string;
   type: "button" | "reset" | "submit" | undefined;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 export const Button = ({
@@ -15,6 +17,7 @@ export const Button = ({
   className,
   type,
   disabled,
+  loading,
 }: ButtonProps) => {
   return (
     <button
@@ -23,7 +26,7 @@ export const Button = ({
       type={type}
       disabled={disabled}
     >
-      {text}
+      {loading ? <CircularProgress size={20} color="inherit" /> : text}
     </button>
   );
 };
