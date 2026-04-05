@@ -23,7 +23,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         bgcolor: "white",
         borderBottom: `1px solid ${v.mainBorder}`,
         borderRadius: 30,
-        top: "10px",
+        top: "5px",
         width: "95vw",
         left: "50%",
         transform: "translateX(-50%)",
