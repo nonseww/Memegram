@@ -6,4 +6,5 @@ export interface Icon {
   style?: React.CSSProperties;
   href?: string;
   label?: string;
+  color?: string;
 }

@@ -1,4 +1,3 @@
-import { DesktopSidebar } from "./DesktopSidebar";
-import { MobileDrawer } from "./MobileDrawer";
+import { BottomMenu } from "./BottomMenu";
 
-export { DesktopSidebar, MobileDrawer };
+export { BottomMenu };
