@@ -2,7 +2,7 @@ import classes from "./HeartButton.module.scss";
 
 interface HeartButtonProps {
   isLiked: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   size?: number;
 }
 

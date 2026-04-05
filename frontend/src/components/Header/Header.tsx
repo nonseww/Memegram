@@ -74,6 +74,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
             width: "40%",
             "& .MuiOutlinedInput-root": {
               borderRadius: 10,
+              bgcolor: "#f1f1f1ff",
             },
             mr: 3,
           }}

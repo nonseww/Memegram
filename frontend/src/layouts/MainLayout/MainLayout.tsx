@@ -14,7 +14,7 @@ export const MainLayout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: { xs: 0.5, md: 3 },
           display: "flex",
           flexDirection: "column",
         }}

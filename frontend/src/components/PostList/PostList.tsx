@@ -1,7 +1,7 @@
-import { PostCard } from "../PostCard/PostCard";
+import { MasonryGrid } from "@/ui/MasonryGrid";
+import { PostCardBase } from "../PostCardBase";
 import type { Post } from "@/types/post";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 interface PostListProps {
@@ -20,14 +20,10 @@ export const PostList = ({ posts }: PostListProps) => {
   }
 
   return (
-    <Stack
-      component="section"
-      spacing={3}
-      sx={{ width: { xs: "85vw", sm: "500px" }, mx: "auto" }}
-    >
+    <MasonryGrid>
       {posts.map((post) => (
-        <PostCard key={post.id} data={post} />
+        <PostCardBase key={post.id} post={post} />
       ))}
-    </Stack>
+    </MasonryGrid>
   );
 };
