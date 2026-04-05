@@ -6,14 +6,22 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   type: "button" | "reset" | "submit" | undefined;
+  disabled?: boolean;
 }
 
-export const Button = ({ text, onClick, className, type }: ButtonProps) => {
+export const Button = ({
+  text,
+  onClick,
+  className,
+  type,
+  disabled,
+}: ButtonProps) => {
   return (
     <button
       className={classNames(className, classes.button)}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {text}
     </button>

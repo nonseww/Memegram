@@ -7,10 +7,12 @@ interface Roles {
 }
 
 export const ProtectedRoute = ({ allowedRoles }: Roles) => {
-  const { isAuth, isLoading, user } = useTypedSelector((state) => state.auth);
+  const { isAuth, isInitLoading, user } = useTypedSelector(
+    (state) => state.auth,
+  );
   const location = useLocation();
 
-  if (isLoading) {
+  if (isInitLoading) {
     return <Loader />;
   }
 

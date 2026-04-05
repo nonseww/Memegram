@@ -6,13 +6,13 @@ import { Outlet } from "react-router-dom";
 
 export const AuthWrapper = () => {
   const dispatch = useTypedDispatch();
-  const { isLoading } = useTypedSelector((state) => state.auth);
+  const { isInitLoading } = useTypedSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(checkAuthThunk());
   }, [dispatch]);
 
-  if (isLoading) {
+  if (isInitLoading) {
     return <Loader />;
   }
 

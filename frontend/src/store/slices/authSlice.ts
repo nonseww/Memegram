@@ -8,14 +8,16 @@ import type { User } from "@/types/user";
 interface AuthState {
   user: User | null;
   isAuth: boolean;
-  isLoading: boolean;
+  isInitLoading: boolean;
+  isSubmitLoading: boolean;
   error: string | null;
 }
 
 const initState: AuthState = {
   user: null,
   isAuth: false,
-  isLoading: true,
+  isInitLoading: true,
+  isSubmitLoading: false,
   error: null,
 };
 
@@ -50,28 +52,18 @@ export const registerThunk = createAsyncThunk(
 export const checkAuthThunk = createAsyncThunk(
   "auth/checkAuth",
   async (_, { rejectWithValue }) => {
-    console.log("1. checkAuthThunk STARTED");
-
     const token = localStorage.getItem("accessToken");
     if (!token) {
       return rejectWithValue("Not authenticated");
     }
 
     try {
-      console.log("2. calling refresh...");
-
       const data = await authApi.refresh();
-      console.log("3. refresh OK:", data);
-
       localStorage.setItem("accessToken", data.accessToken);
 
-      console.log("4. calling getMe...");
       const user = await authApi.getMe();
-      console.log("5. getMe OK:", user);
-
       return user;
     } catch (error: any) {
-      console.log("6. FAILED:", error?.response?.status, error?.message);
       localStorage.removeItem("accessToken");
       return rejectWithValue("Not authenticated");
     }
@@ -98,24 +90,24 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginThunk.pending, (state) => {
-        state.isLoading = true;
+        state.isSubmitLoading = true;
         state.error = null;
       })
 
       .addCase(loginThunk.fulfilled, (state, action: PayloadAction<User>) => {
         state.user = action.payload;
-        state.isLoading = false;
+        state.isSubmitLoading = false;
         state.isAuth = true;
       })
 
       .addCase(loginThunk.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isSubmitLoading = false;
         state.error = action.payload as string;
       });
 
     builder
       .addCase(registerThunk.pending, (state) => {
-        state.isLoading = true;
+        state.isSubmitLoading = true;
         state.error = null;
       })
 
@@ -123,19 +115,19 @@ const authSlice = createSlice({
         registerThunk.fulfilled,
         (state, action: PayloadAction<User>) => {
           state.user = action.payload;
-          state.isLoading = false;
+          state.isSubmitLoading = false;
           state.isAuth = true;
         },
       )
 
       .addCase(registerThunk.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error as string;
+        state.isSubmitLoading = false;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(checkAuthThunk.pending, (state) => {
-        state.isLoading = true;
+        state.isInitLoading = true;
         state.error = null;
       })
 
@@ -143,20 +135,20 @@ const authSlice = createSlice({
         checkAuthThunk.fulfilled,
         (state, action: PayloadAction<User>) => {
           state.user = action.payload;
-          state.isLoading = false;
+          state.isInitLoading = false;
           state.isAuth = true;
         },
       )
 
       .addCase(checkAuthThunk.rejected, (state) => {
         state.user = null;
-        state.isLoading = false;
+        state.isInitLoading = false;
         state.error = null;
       });
 
     builder
       .addCase(logoutThunk.pending, (state) => {
-        state.isLoading = true;
+        state.isSubmitLoading = true;
         state.error = null;
       })
 
@@ -164,7 +156,7 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuth = false;
         state.error = null;
-        state.isLoading = false;
+        state.isSubmitLoading = false;
       });
   },
 });
