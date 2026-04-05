@@ -8,5 +8,5 @@ export interface UserProfile {
   imageUrl: string;
   avatarUrl: string;
   aboutText: string;
-  isOwnProfile: boolean;
+  isOwnProfile?: boolean;
 }
