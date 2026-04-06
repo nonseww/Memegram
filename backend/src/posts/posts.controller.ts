@@ -20,13 +20,13 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  create(@Body() dto: CreatePostDto) {
-    return this.postsService.create(dto);
+  create(@Body() dto: CreatePostDto, @CurrentUser() user) {
+    return this.postsService.create(dto, user?.id);
   }
 
-  @Get(':userId')
-  findAll(@Param('userId', ParseIntPipe) userId: number) {
-    return this.postsService.findAll(userId);
+  @Get()
+  findAll(@CurrentUser() user) {
+    return this.postsService.findAll(user?.id);
   }
 
   @Get('user/:userId')

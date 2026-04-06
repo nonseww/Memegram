@@ -42,8 +42,8 @@ export class PostsService {
     };
   }
 
-  async create(dto: CreatePostDto) {
-    const data = { ...dto };
+  async create(dto: CreatePostDto, userId: number) {
+    const data = { ...dto, user_id: userId };
     const post = await this.prisma.posts.create({
       data,
     });
