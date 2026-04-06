@@ -3,12 +3,24 @@ import { PostCardBase } from "../PostCardBase";
 import type { Post } from "@/types/post";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useNavigate, useParams } from "react-router-dom";
+import { PostModal } from "../PostModal";
 
 interface PostListProps {
   posts: Post[];
 }
 
 export const PostList = ({ posts }: PostListProps) => {
+  const { postId } = useParams();
+  const navigate = useNavigate();
+
+  const selectedPost = postId
+    ? (posts.find((p) => p.id === +postId) ?? null)
+    : null;
+  const handleCloseModal = () => {
+    navigate("/");
+  };
+
   if (posts.length === 0) {
     return (
       <Box sx={{ py: 4, textAlign: "center" }}>
@@ -20,10 +32,18 @@ export const PostList = ({ posts }: PostListProps) => {
   }
 
   return (
-    <MasonryGrid>
-      {posts.map((post) => (
-        <PostCardBase key={post.id} post={post} />
-      ))}
-    </MasonryGrid>
+    <>
+      <MasonryGrid>
+        {posts.map((post) => (
+          <PostCardBase key={post.id} post={post} />
+        ))}
+      </MasonryGrid>
+
+      <PostModal
+        open={!!selectedPost}
+        onClose={handleCloseModal}
+        post={selectedPost}
+      />
+    </>
   );
 };

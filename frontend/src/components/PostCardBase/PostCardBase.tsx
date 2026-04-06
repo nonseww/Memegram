@@ -8,14 +8,19 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
+import { useNavigate } from "react-router-dom";
 
 interface PostCardBaseProps {
   post: Post;
 }
 
 export const PostCardBase = ({ post }: PostCardBaseProps) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(post.isLiked);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${post.id}`);
+  };
 
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -23,7 +28,7 @@ export const PostCardBase = ({ post }: PostCardBaseProps) => {
   };
   return (
     <>
-      <StyledCard onClick={() => setIsModalOpen(true)}>
+      <StyledCard onClick={handleClick}>
         <Box sx={{ position: "relative" }}>
           <CardMedia component="img" image={post.meme} alt={post.title} />
 

@@ -42,6 +42,7 @@ export const AppRoute = () => {
           <Route element={<MainLayout />}>
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Main />} />
+              <Route path="/post/:postId" element={<Main />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile-edit" element={<ProfileEditPage />} />
               <Route path="/posts" element={<Posts />} />
