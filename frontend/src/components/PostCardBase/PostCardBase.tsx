@@ -6,6 +6,8 @@ import { StyledCard } from "@/ui/StyledCard";
 import { Overlay } from "@/ui/Overlay";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
 
 interface PostCardBaseProps {
   post: Post;
@@ -33,6 +35,10 @@ export const PostCardBase = ({ post }: PostCardBaseProps) => {
                 position: "relative",
               }}
             >
+              <CardHeader
+                avatar={<Avatar src={post.authorPfp} alt={post.author} />}
+                title={post.author}
+              />
               <Typography
                 variant="h6"
                 sx={{
