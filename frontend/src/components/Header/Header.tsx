@@ -24,7 +24,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         borderBottom: `1px solid ${v.mainBorder}`,
         borderRadius: 30,
         top: { xs: "5px", md: "10px" },
-        width: "90vw",
+        width: "90dvw",
         left: "50%",
         transform: "translateX(-50%)",
       }}
