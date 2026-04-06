@@ -2,11 +2,11 @@ import type { Icon } from "../types/icon";
 
 export const NAV_ELEMENTS: Icon[] = [
   {
-    id: "Профиль",
-    src: "/src/assets/svgs/User.svg",
-    label: "Профиль",
-    alt: "Профиль",
-    href: "/profile",
+    id: "Лента",
+    src: "/src/assets/svgs/Coffee.svg",
+    label: "Лента",
+    alt: "Лента",
+    href: "/",
   },
   {
     id: "Подписки",
@@ -17,16 +17,16 @@ export const NAV_ELEMENTS: Icon[] = [
   },
   {
     id: "Запостить",
-    src: "/src/assets/svgs/Coffee.svg",
+    src: "src/assets/svgs/NewPost.svg",
     label: "Запостить",
     alt: "Запостить",
     href: "/new-post",
   },
   {
-    id: "Выйти",
-    src: "/src/assets/svgs/Logout.svg",
-    label: "Выйти",
-    alt: "Выйти",
-    href: "/logout",
+    id: "Профиль",
+    src: "/src/assets/svgs/User.svg",
+    label: "Профиль",
+    alt: "Профиль",
+    href: "/profile",
   },
 ];

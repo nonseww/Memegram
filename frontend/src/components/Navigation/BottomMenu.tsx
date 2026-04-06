@@ -5,9 +5,25 @@ import { useState } from "react";
 import { NAV_ELEMENTS } from "@/data/navigation";
 import { Icon } from "@/ui";
 import classes from "./BottomMenu.module.scss";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const BottomMenu = () => {
-  const [value, setValue] = useState<number>(0);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentIndex = NAV_ELEMENTS.findIndex(
+    (item) => item.href === location.pathname,
+  );
+  const [value, setValue] = useState<number>(
+    currentIndex !== -1 ? currentIndex : 0,
+  );
+
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+    const href = NAV_ELEMENTS[newValue].href;
+    if (href) {
+      navigate(href);
+    }
+  };
 
   return (
     <Box
@@ -24,9 +40,7 @@ export const BottomMenu = () => {
       <BottomNavigation
         showLabels
         value={value}
-        onChange={(_, newValue) => {
-          setValue(newValue);
-        }}
+        onChange={handleChange}
         className={classes.bottomMenu}
         sx={{
           width: "100%",
@@ -39,6 +53,15 @@ export const BottomMenu = () => {
             sx={{
               color: "white",
               textShadow: "0 2px 4px rgba(0, 0, 0, 0.8)",
+              "&:focus": {
+                outline: "none",
+              },
+              "&.Mui-focusVisible": {
+                outline: "none",
+              },
+              "& .MuiTouchRipple-root": {
+                display: "none",
+              },
             }}
             key={id}
             label={label}

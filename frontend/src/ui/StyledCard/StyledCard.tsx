@@ -7,7 +7,7 @@ export const StyledCard = styled(Card)(() => ({
   backgroundColor: v.cardColor,
   borderRadius: "25px",
   border: `1px solid ${v.bgcolor}`,
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+  boxShadow: "4px 4px 12px rgba(0, 0, 0, 0.3)",
   py: "10px",
   pb: "15px",
   display: "flex",

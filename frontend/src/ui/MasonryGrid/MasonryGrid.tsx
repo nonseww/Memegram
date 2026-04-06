@@ -13,7 +13,7 @@ export const MasonryGrid = ({
   spacing = { xs: 1.5, sm: 1.5, md: 2, lg: 3 },
 }: MasonryGridProps) => {
   return (
-    <Box sx={{ width: "100%", p: 1, mt: 3 }}>
+    <Box sx={{ width: "100%", p: 1, mt: { xs: 3, lg: 4 } }}>
       <Masonry columns={columns} spacing={spacing}>
         {children}
       </Masonry>

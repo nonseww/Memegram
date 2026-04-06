@@ -7,7 +7,7 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: v.mainOrange,
+      main: v.mainYellow,
       dark: v.activeButtonColor,
       contrastText: v.textColor,
     },

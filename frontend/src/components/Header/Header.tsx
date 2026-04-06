@@ -23,8 +23,8 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         bgcolor: "white",
         borderBottom: `1px solid ${v.mainBorder}`,
         borderRadius: 30,
-        top: "5px",
-        width: "95vw",
+        top: { xs: "5px", md: "10px" },
+        width: "90vw",
         left: "50%",
         transform: "translateX(-50%)",
       }}
@@ -44,7 +44,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
             component="img"
             src={LogoImage}
             alt="logo"
-            sx={{ height: { xs: 35, lg: 45 }, mr: 3 }}
+            sx={{ height: { xs: 40, lg: 50 }, mr: 3 }}
           />
           <Box
             component="img"
@@ -71,12 +71,12 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
           options={["a", "b", "c"]}
           sx={{
             display: { xs: "none", md: "block" },
-            width: "40%",
+            width: { md: "40%", lg: "30%" },
             "& .MuiOutlinedInput-root": {
-              borderRadius: 10,
+              borderRadius: 4,
               bgcolor: "#f1f1f1ff",
             },
-            mr: 3,
+            mr: { md: 3, lg: 8 },
           }}
           renderInput={(params) => (
             <TextField

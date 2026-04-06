@@ -23,8 +23,9 @@ export const Overlay = ({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      padding: 1.5,
       color: "white",
-      bgcolor: "rgba(0, 0, 0, 0.5)",
+      background: "rgba(0, 0, 0, 0.7)",
       borderRadius: borderRadius,
       zIndex: 2,
       transition: "opacity 0.3s ease-in-out",
@@ -32,6 +33,7 @@ export const Overlay = ({
       ".MuiBox-root:hover > &": {
         opacity: 1,
       },
+      cursor: "pointer",
     }}
   >
     {children}
