@@ -6,7 +6,10 @@ import { AuthModule } from './auth/auth.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { PostsModule } from './posts/posts.module.js';
+import { UploadModule } from './upload/upload.module.js';
 import Joi from 'joi';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -24,10 +27,15 @@ import Joi from 'joi';
         FRONTEND_URL: Joi.string().default('http://localhost:5173'),
       }),
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     UsersModule,
     AuthModule,
     PrismaModule,
     PostsModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
