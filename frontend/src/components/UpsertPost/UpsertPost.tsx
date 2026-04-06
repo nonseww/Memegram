@@ -1,37 +1,33 @@
 import { StyledCard } from "@/ui/StyledCard";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
-import type { UpsertPost as UpsertPostInterface } from "@/types/upsertPost";
 import { MultilineTextField } from "@/ui/MultilineTextField";
 import CardActions from "@mui/material/CardActions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useLocation, useNavigate } from "react-router-dom";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Typography from "@mui/material/Typography";
 import { Overlay } from "@/ui/Overlay";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { usePostForm } from "./hooks/usePostForm";
 
 const MAXLENGTH = 3000;
 
 export const UpsertPost = () => {
-  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-  const location = useLocation();
-  const postFromState: UpsertPostInterface = location.state?.post;
-  const [title, setTitle] = useState<string>(postFromState?.title || "");
-  const [description, setDescription] = useState<string>(
-    postFromState?.description || "",
-  );
-  const [meme, setMeme] = useState<string>(postFromState?.meme || "");
-
-  const handleSave = async () => {
-    navigate(-1);
-    setMeme(meme);
-  };
+  const {
+    navigate,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    meme,
+    handleSave,
+    isEditing,
+  } = usePostForm();
 
   return (
-    <Box sx={{ width: { xs: "85vw", sm: "500px" }, mx: "auto" }}>
+    <Box sx={{ width: { xs: "85vw", sm: "500px" }, mx: "auto", my: 2 }}>
       <StyledCard>
         <CardContent
           sx={{

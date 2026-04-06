@@ -45,10 +45,39 @@ export class PostsService {
   async create(dto: CreatePostDto, userId: number) {
     const data = { ...dto, user_id: userId };
     const post = await this.prisma.posts.create({
-      data,
+      data: {
+        title: dto.title,
+        description: dto.description,
+        image_url: dto.image_url,
+        users: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+      include: {
+        users: {
+          select: {
+            id: true,
+            username: true,
+            name: true,
+            avatar_url: true,
+          },
+        },
+        likes: {
+          select: {
+            user_id: true,
+          },
+        },
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
+      },
     });
     this.logger.log('Post was created successfully');
-    return post;
+    return this.transformPost(post, userId);
   }
 
   async findAll(currentUserId?: number) {
@@ -149,8 +178,28 @@ export class PostsService {
     const updatedPost = await this.prisma.posts.update({
       where: { id },
       data,
+      include: {
+        users: {
+          select: {
+            id: true,
+            username: true,
+            name: true,
+            avatar_url: true,
+          },
+        },
+        likes: {
+          select: {
+            user_id: true,
+          },
+        },
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
+      },
     });
-    return updatedPost;
+    return this.transformPost(updatedPost, userId);
   }
 
   async remove(id: number, userId: number) {

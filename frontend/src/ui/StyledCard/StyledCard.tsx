@@ -10,7 +10,7 @@ export const StyledCard = styled(Card)(() => ({
   boxShadow: "4px 4px 12px rgba(0, 0, 0, 0.3)",
   py: "10px",
   pb: "15px",
-  display: "flex",
+  //display: "flex",
   transition: "transform 0.2s",
   "&:hover": { transform: "translateY(-4px)" },
   willChange: "transform",

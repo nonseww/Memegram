@@ -8,7 +8,7 @@ import {
 } from "@reduxjs/toolkit";
 
 interface PostsState {
-  posts: Post[] | null;
+  posts: Post[];
   currentPost: Post | null;
   isInitLoading: boolean;
   isSubmitLoading: boolean;
