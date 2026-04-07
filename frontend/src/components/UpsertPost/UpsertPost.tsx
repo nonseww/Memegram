@@ -23,7 +23,7 @@ export const UpsertPost = () => {
     setDescription,
     meme,
     handleSave,
-    isEditing,
+    handleFileChange,
   } = usePostForm();
 
   return (
@@ -57,7 +57,13 @@ export const UpsertPost = () => {
             }}
             onClick={() => inputRef.current?.click()}
           >
-            <input type="file" hidden ref={inputRef} accept="image/*" />
+            <input
+              type="file"
+              hidden
+              ref={inputRef}
+              accept="image/*"
+              onChange={handleFileChange}
+            />
             {meme ? (
               <>
                 <Box

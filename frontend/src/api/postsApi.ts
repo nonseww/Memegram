@@ -32,4 +32,17 @@ export const postsApi = {
     await api.delete(`/posts/${id}`);
     return id;
   },
+
+  uploadImage: async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const { data } = await api.post("/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return data.url;
+  },
 };

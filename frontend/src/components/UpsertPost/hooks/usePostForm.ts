@@ -3,6 +3,7 @@ import type { UpsertPost as UpsertPostInterface } from "@/types/upsertPost";
 import { useTypedDispatch } from "@/store/hooks";
 import { useState } from "react";
 import { createPostThunk, updatePostThunk } from "@/store/slices/postsSlice";
+import { postsApi } from "@/api/postsApi";
 
 export const usePostForm = () => {
   const navigate = useNavigate();
@@ -14,11 +15,29 @@ export const usePostForm = () => {
     postFromState?.description || "",
   );
   const [meme, setMeme] = useState<string>(postFromState?.meme || "");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const isEditing = !!postFromState?.id;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+
+      const reader = new FileReader();
+      reader.onload = () => setMeme(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSave = async () => {
     try {
-      const dto = { title, description, image_url: meme };
+      let imageUrl = meme;
+
+      if (imageFile) {
+        imageUrl = await postsApi.uploadImage(imageFile);
+      }
+
+      const dto = { title, description, image_url: imageUrl };
       if (isEditing) {
         await dispatch(
           updatePostThunk({ dto, id: postFromState.id! }),
@@ -42,5 +61,6 @@ export const usePostForm = () => {
     setMeme,
     handleSave,
     isEditing,
+    handleFileChange,
   };
 };
