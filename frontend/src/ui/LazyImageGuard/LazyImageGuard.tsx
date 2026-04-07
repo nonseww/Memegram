@@ -19,8 +19,9 @@ export const LazyImageGuard = ({
   viewHeight,
 }: LazyImageGuardProps) => {
   const { isInView, containerRef } = useInView(viewHeight);
-  const { isLoaded, isError, imageRef, handleLoad, handleError } =
-    useImageLazyLoad(isInView && src ? src : "");
+  const { isLoaded, imageRef, handleLoad, handleError } = useImageLazyLoad(
+    isInView && src ? src : "",
+  );
 
   return (
     <Box

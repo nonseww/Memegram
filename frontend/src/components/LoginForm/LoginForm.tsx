@@ -11,15 +11,26 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm, Controller } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTypedDispatch, useTypedSelector } from "@/store/hooks";
+import {
+  clearError,
+  loginThunk,
+  registerThunk,
+} from "@/store/slices/authSlice";
 
 export const LoginForm = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isRegister, setIsRegister] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const dispatch = useTypedDispatch();
+  const { isSubmitLoading, error } = useTypedSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -30,12 +41,45 @@ export const LoginForm = () => {
       agreement: false,
     },
   });
-  const navigate = useNavigate();
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onSubmit = (data: FormData) => {
-    console.log("Готово", data);
-    navigate("/");
+  useEffect(() => {
+    dispatch(clearError());
+    reset();
+  }, [isRegister, dispatch]);
+
+  useEffect(() => {
+    console.log("LoginForm MOUNTED");
+    return () => console.log("LoginForm UNMOUNTED");
+  }, []);
+
+  useEffect(() => {
+    console.log("isRegister changed:", isRegister);
+  }, [isRegister]);
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      if (isRegister) {
+        await dispatch(
+          registerThunk({
+            username: data.username || "",
+            name: data.name || "",
+            email: data.email,
+            password: data.password,
+          }),
+        ).unwrap();
+      } else {
+        await dispatch(
+          loginThunk({
+            email: data.email,
+            password: data.password,
+          }),
+        ).unwrap();
+
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Auth error: ", error);
+    }
   };
 
   return (
@@ -51,74 +95,73 @@ export const LoginForm = () => {
         noValidate
       >
         <Typography variant="h4" className={classes.title}>
-          {isLogin ? "Регистрация" : "Авторизация"}
+          {isRegister ? "Регистрация" : "Авторизация"}
         </Typography>
 
         <Box className={classes.fieldset}>
+          {isRegister && (
+            <Controller
+              control={control}
+              rules={{ required: "Введите юзернейм" }}
+              name="username"
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  variant="standard"
+                  label="Username"
+                  error={!!errors.username}
+                  helperText={errors.username?.message}
+                  fullWidth
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">@</InputAdornment>
+                      ),
+                    },
+                  }}
+                />
+              )}
+            />
+          )}
+          {isRegister && (
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: "Введите имя и фамилию" }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  variant="standard"
+                  label="Имя Фамилия"
+                  error={!!errors.name}
+                  helperText={errors.name?.message}
+                  fullWidth
+                />
+              )}
+            />
+          )}
           <Controller
+            name="email"
             control={control}
-            rules={{ required: "Введите юзернейм" }}
-            name="username"
+            rules={{
+              required: "Введите почту",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Неверный формат",
+              },
+            }}
             render={({ field }) => (
               <TextField
                 {...field}
                 variant="standard"
-                label="Username"
-                error={!!errors.username}
-                helperText={errors.username?.message}
+                label="Почта"
+                type="email"
+                error={!!errors.email}
+                helperText={errors.email?.message}
                 fullWidth
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">@</InputAdornment>
-                    ),
-                  },
-                }}
               />
             )}
           />
-          {isLogin && (
-            <>
-              <Controller
-                name="name"
-                control={control}
-                rules={{ required: "Введите имя и фамилию" }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    variant="standard"
-                    label="Имя Фамилия"
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                    fullWidth
-                  />
-                )}
-              />
-
-              <Controller
-                name="email"
-                control={control}
-                rules={{
-                  required: "Введите почту",
-                  pattern: {
-                    value: /\S+@\S+\.\S+/,
-                    message: "Неверный формат",
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    variant="standard"
-                    label="Почта"
-                    type="email"
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                    fullWidth
-                  />
-                )}
-              />
-            </>
-          )}
           <Controller
             name="password"
             control={control}
@@ -159,7 +202,7 @@ export const LoginForm = () => {
         </Box>
 
         <Box className={classes.bottomContainer}>
-          {isLogin && (
+          {isRegister && (
             <Controller
               name="agreement"
               control={control}
@@ -193,15 +236,22 @@ export const LoginForm = () => {
 
           <Typography
             className={classes.changeLogin}
-            onClick={() => setIsLogin(!isLogin)}
+            onClick={() => setIsRegister(!isRegister)}
           >
-            {isLogin ? "Уже есть аккаунт?" : "Нет аккаунта?"}
+            {isRegister ? "Уже есть аккаунт?" : "Нет аккаунта?"}
           </Typography>
 
+          {error && (
+            <Typography color="error" maxWidth="60vw" sx={{ mb: 2 }}>
+              {error}
+            </Typography>
+          )}
+
           <Button
-            text={isLogin ? "Создать" : "Войти"}
+            text={isRegister ? "Создать" : "Войти"}
             type="submit"
             className={classes.submitButton}
+            disabled={isSubmitLoading}
           />
         </Box>
       </Box>

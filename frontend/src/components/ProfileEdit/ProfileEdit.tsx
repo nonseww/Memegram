@@ -128,7 +128,8 @@ export const ProfileEdit = ({ userData }: UserProfileProps) => {
         <TextField label="Имя:" fullWidth defaultValue={userData.name} />
         <MultilineTextField
           maxLength={MAXLENGTH}
-          initValue={userData.aboutText}
+          value={userData.aboutText}
+          onChange={() => {}}
         />
 
         <Box

@@ -6,7 +6,7 @@ import { MultilineTextField } from "@/ui/MultilineTextField";
 import CardActions from "@mui/material/CardActions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Typography from "@mui/material/Typography";
 import { Overlay } from "@/ui/Overlay";
@@ -18,7 +18,6 @@ export const UpsertPost = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
-  const { id } = useParams();
   const postFromState: UpsertPostInterface = location.state?.post;
   const [title, setTitle] = useState<string>(postFromState?.title || "");
   const [description, setDescription] = useState<string>(
@@ -28,6 +27,7 @@ export const UpsertPost = () => {
 
   const handleSave = async () => {
     navigate(-1);
+    setMeme(meme);
   };
 
   return (
@@ -128,7 +128,7 @@ export const UpsertPost = () => {
             size="large"
             variant="contained"
             color="primary"
-            onClick={() => {}}
+            onClick={handleSave}
           >
             Сохранить
           </Button>

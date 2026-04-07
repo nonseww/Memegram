@@ -31,6 +31,6 @@ export const NAV_ELEMENTS: Icon[] = [
     src: LogoutIcon,
     label: "Выйти",
     alt: "Выйти",
-    href: "/login",
+    href: "/logout",
   },
 ];

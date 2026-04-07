@@ -1,7 +1,5 @@
 import { UserProfile } from "@/components/UserProfile";
 import type { UserProfile as UserProfileInterface } from "@/types/userData";
-import { MOCK_POSTS } from "@/utils/mockPosts";
-import { useParams } from "react-router-dom";
 
 const mockUserData: UserProfileInterface = {
   id: 1,
@@ -17,9 +15,6 @@ const mockUserData: UserProfileInterface = {
 };
 
 export const Profile = () => {
-  const { id } = useParams();
-  const isMe = !id || +id === 1;
-
   return (
     <>
       <UserProfile userData={mockUserData} />

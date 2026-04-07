@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 
 export const useImageLazyLoad = (src: string) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);

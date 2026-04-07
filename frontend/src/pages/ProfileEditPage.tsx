@@ -1,6 +1,7 @@
 import { ProfileEdit } from "@/components/ProfileEdit";
 
 const mockUserData = {
+  id: 1,
   name: "Инна Политучая",
   username: "sus_nonseww",
   postsCount: 42,

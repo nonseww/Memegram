@@ -3,30 +3,43 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  Matches,
+  MaxLength,
   MinLength,
 } from 'class-validator';
+import { validationMessage as vm } from '#/common/utils/validation-messages.util.js';
 
 export class CreateUserDto {
-  @IsString()
-  @IsNotEmpty({ message: 'Имя пользователя не должно быть пустым ' })
+  @IsString({ message: vm('Username').string })
+  @IsNotEmpty({ message: vm('Username').required })
+  @MinLength(4, { message: vm('Username').minLength(4) })
+  @MaxLength(30, { message: vm('Username').maxLength(30) })
+  @Matches(/^[a-zA-Z0-9_]+$/, {
+    message: vm('Password').alphanumericUnderscore,
+  })
   username: string;
 
-  @IsString()
-  @IsNotEmpty({ message: 'Имя не может быть пустым' })
+  @IsString({ message: vm('Name').string })
+  @IsNotEmpty({ message: vm('Name').required })
+  @MaxLength(30, { message: vm('Name').maxLength(30) })
   name: string;
 
-  @IsEmail({}, { message: 'Некорректный email' })
+  @IsEmail({}, { message: vm('Email').email })
+  @IsNotEmpty({ message: vm('Email').required })
   email: string;
 
-  @IsString()
-  @MinLength(6, { message: 'Пароль должен иметь минимум 6 символов' })
+  @IsString({ message: vm('Password').string })
+  @IsNotEmpty({ message: vm('Password').required })
+  @MinLength(6, { message: vm('Password').minLength(6) })
+  @MaxLength(100, { message: vm('Password').maxLength(100) })
   password: string;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: vm('About').string })
+  @MaxLength(300, { message: vm('About').maxLength(300) })
   about?: string;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: vm('Avatar_url').string })
   avatar_url?: string;
 }
