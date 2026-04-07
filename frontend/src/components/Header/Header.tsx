@@ -4,8 +4,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Memegram from "./assets/Memegram.svg";
-import MenuIcon from "@mui/icons-material/Menu";
 import v from "@/styles/_variables.module.scss";
+import Search from "@mui/icons-material/Search";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -17,8 +20,13 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        bgcolor: v.mainYellow,
+        bgcolor: "white",
         borderBottom: `1px solid ${v.mainBorder}`,
+        borderRadius: 30,
+        top: "10px",
+        width: "95vw",
+        left: "50%",
+        transform: "translateX(-50%)",
       }}
     >
       <Toolbar
@@ -36,27 +44,57 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
             component="img"
             src={LogoImage}
             alt="logo"
-            sx={{ height: { xs: 40, lg: 50 }, mr: 3 }}
+            sx={{ height: { xs: 35, lg: 45 }, mr: 3 }}
           />
           <Box
             component="img"
             src={Memegram}
             alt="Memegram"
-            sx={{ height: { xs: 20, md: 25, lg: 28 } }}
+            sx={{ height: { xs: 18, md: 23 } }}
           />
         </Box>
 
         <IconButton
           onClick={onMenuClick}
           sx={{
-            display: { xs: "flex", lg: "none" },
+            display: { xs: "flex", md: "none" },
             justifyContent: "center",
             alignItems: "center",
           }}
           size="large"
         >
-          <MenuIcon fontSize="inherit" />
+          <Search fontSize="inherit" />
         </IconButton>
+
+        <Autocomplete
+          freeSolo
+          options={["a", "b", "c"]}
+          sx={{
+            display: { xs: "none", md: "block" },
+            width: "40%",
+            "& .MuiOutlinedInput-root": {
+              borderRadius: 10,
+            },
+            mr: 3,
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              placeholder="Найти мем..."
+              size="small"
+              slotProps={{
+                input: {
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
+          )}
+        />
       </Toolbar>
     </AppBar>
   );
