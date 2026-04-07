@@ -1,24 +1,16 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Header } from "@/components/Header";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { MobileDrawer, DesktopSidebar } from "@/components/Navigation";
+import { BottomMenu } from "@/components/Navigation";
 
 const DRAWER_WIDTH = 280;
 
 export const MainLayout = () => {
-  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prev) => !prev);
-  };
-
   return (
     <Box sx={{ display: "flex", minHeight: "100pvh", bgcolor: "inherit" }}>
-      <Header onMenuClick={handleDrawerToggle} />
-      <MobileDrawer isOpen={mobileOpen} onClose={handleDrawerToggle} />
-      <DesktopSidebar />
+      <Header onMenuClick={() => {}} />
+      <BottomMenu />
 
       <Box
         component="main"
