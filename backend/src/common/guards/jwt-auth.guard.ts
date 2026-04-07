@@ -7,10 +7,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
   canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
-
-    this.logger.log('=== JwtAuthGuard.canActivate ===');
-    this.logger.log(`Authorization header: ${request.headers.authorization}`);
-
     return super.canActivate(context);
   }
 }
