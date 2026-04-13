@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   Logger,
@@ -97,6 +98,54 @@ export class UsersService {
     });
   }
 
+  async getProfile(username: string, currentUserId: number | undefined) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        about: true,
+        avatar_url: true,
+        cover_url: true,
+        _count: {
+          select: {
+            posts: true,
+            followers: true,
+            followings: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found!');
+    }
+
+    let isFollowing = false;
+    if (currentUserId) {
+      const follow = await this.prisma.follows.findUnique({
+        where: {
+          follower_id_following_id: {
+            follower_id: currentUserId,
+            following_id: user.id,
+          },
+        },
+      });
+      isFollowing = !!follow;
+    }
+
+    return {
+      ...user,
+      postsCount: user?._count.posts,
+      followersCount: user?._count.followers,
+      followingsCount: user?._count.followings,
+      isFollowing,
+    };
+  }
+
   async findOne(id: number) {
     const user = await this.findUserById(id);
     return excludePassword(user);
@@ -136,5 +185,42 @@ export class UsersService {
     });
 
     this.logger.log('User was deleted successfully');
+  }
+
+  async toggleFollow(followerId: number, followingId: number) {
+    if (followerId === followerId) {
+      throw new BadRequestException('User cannot follow themself');
+    }
+
+    const targetUser = await this.findUserById(followerId);
+
+    const isFollowExisting = await this.prisma.follows.findUnique({
+      where: {
+        follower_id_following_id: {
+          follower_id: followerId,
+          following_id: followingId,
+        },
+      },
+    });
+
+    if (isFollowExisting) {
+      await this.prisma.follows.delete({
+        where: {
+          follower_id_following_id: {
+            follower_id: followerId,
+            following_id: followingId,
+          },
+        },
+      });
+      return { isFolowing: false };
+    } else {
+      await this.prisma.follows.create({
+        data: {
+          follower_id: followerId,
+          following_id: followingId,
+        },
+      });
+      return { isFollowing: true };
+    }
   }
 }

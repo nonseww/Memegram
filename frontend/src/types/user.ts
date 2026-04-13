@@ -4,6 +4,14 @@ export interface User {
   name: string;
   username: string;
   role: string;
-  avatar_url?: string;
+  avatarUrl?: string;
+  imageUrl?: string;
   about?: string;
+}
+
+export interface UserProfile extends User {
+  postsCount: number;
+  followersCount: number;
+  followingsCount: number;
+  isFollowing: boolean;
 }

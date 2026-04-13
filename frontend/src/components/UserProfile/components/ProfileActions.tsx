@@ -10,7 +10,7 @@ interface ProfileActionsProps {
 export const ProfileActions = ({
   onCancel,
   onSave,
-  isLoading,
+  //isLoading,
 }: ProfileActionsProps) => {
   return (
     <Box

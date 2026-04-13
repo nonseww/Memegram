@@ -1,7 +1,7 @@
-import type { UserProfile } from "@/types/userData";
+import type { UserProfileView } from "@/utils/transformers";
 import { useRef, useState } from "react";
 
-export const useProfileForm = (initData: UserProfile) => {
+export const useProfileForm = (initData: UserProfileView) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [name, setName] = useState<string>(initData.name);
   const [about, setAbout] = useState<string>(initData.aboutText);

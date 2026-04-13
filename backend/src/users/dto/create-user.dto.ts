@@ -17,22 +17,22 @@ export class CreateUserDto {
   @Matches(/^[a-zA-Z0-9_]+$/, {
     message: vm('Password').alphanumericUnderscore,
   })
-  username: string;
+  username!: string;
 
   @IsString({ message: vm('Name').string })
   @IsNotEmpty({ message: vm('Name').required })
   @MaxLength(30, { message: vm('Name').maxLength(30) })
-  name: string;
+  name!: string;
 
   @IsEmail({}, { message: vm('Email').email })
   @IsNotEmpty({ message: vm('Email').required })
-  email: string;
+  email!: string;
 
   @IsString({ message: vm('Password').string })
   @IsNotEmpty({ message: vm('Password').required })
   @MinLength(6, { message: vm('Password').minLength(6) })
   @MaxLength(100, { message: vm('Password').maxLength(100) })
-  password: string;
+  password!: string;
 
   @IsOptional()
   @IsString({ message: vm('About').string })
@@ -42,4 +42,8 @@ export class CreateUserDto {
   @IsOptional()
   @IsString({ message: vm('Avatar_url').string })
   avatar_url?: string;
+
+  @IsOptional()
+  @IsString({ message: vm('Cover_url').string })
+  cover_url?: string;
 }

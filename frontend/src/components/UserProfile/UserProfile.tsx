@@ -1,4 +1,4 @@
-import type { UserProfile as UserProfileInterface } from "@/types/userData";
+import type { UserProfileView } from "@/utils/transformers";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { InfoList } from "./components/InfoList";
@@ -6,12 +6,21 @@ import { useProfileForm } from "./hooks/useProfileForm";
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileActions } from "./components/ProfileActions";
 import { ProfileAbout } from "./components/ProfileAbout";
+import type { UpdateProfileDto } from "@/types/profileDto";
 
 interface UserProfileProps {
-  userData: UserProfileInterface;
+  userData: UserProfileView;
+  isSubmitLoading: boolean;
+  onFollow: () => void;
+  onUpdate: (dto: UpdateProfileDto) => void;
 }
 
-export const UserProfile = ({ userData }: UserProfileProps) => {
+export const UserProfile = ({
+  userData,
+  isSubmitLoading,
+  onFollow,
+  onUpdate,
+}: UserProfileProps) => {
   const {
     isEditing,
     name,
