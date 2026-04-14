@@ -152,7 +152,7 @@ export class UsersService {
   }
 
   async update(id: number, dto: UpdateUserDto) {
-    await this.findOne(id);
+    await this.findById(id);
 
     if (dto.email) {
       await this.isEmailNotTaken(dto.email);
@@ -170,11 +170,34 @@ export class UsersService {
     const user = await this.prisma.users.update({
       where: { id },
       data,
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        about: true,
+        email: true,
+        role: true,
+        avatar_url: true,
+        cover_url: true,
+        created_at: true,
+        _count: {
+          select: {
+            posts: true,
+            followers: true,
+            followings: true,
+          },
+        },
+      },
     });
 
     this.logger.log(`User was updated successfully`);
 
-    return excludePassword(user);
+    return {
+      ...user,
+      postsCount: user._count.posts,
+      followersCount: user._count.followers,
+      followingsCount: user._count.followings,
+    };
   }
 
   async remove(id: number) {

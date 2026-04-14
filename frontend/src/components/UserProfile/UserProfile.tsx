@@ -12,7 +12,7 @@ interface UserProfileProps {
   userData: UserProfileView;
   isSubmitLoading: boolean;
   onFollow: () => void;
-  onUpdate: (dto: UpdateProfileDto) => void;
+  onUpdate: (dto: UpdateProfileDto) => Promise<void>;
 }
 
 export const UserProfile = ({
@@ -28,15 +28,15 @@ export const UserProfile = ({
     about,
     setAbout,
     avatar,
-    bg,
+    cover,
     avatarInputRef,
-    bgInputRef,
+    coverInputRef,
     handleEdit,
     handleCancel,
     handleSave,
     handleAvatarChange,
-    handleBgChange,
-  } = useProfileForm(userData);
+    handleCoverChange,
+  } = useProfileForm(userData, onUpdate);
 
   return (
     <Paper
@@ -60,14 +60,14 @@ export const UserProfile = ({
       <input
         type="file"
         hidden
-        ref={bgInputRef}
+        ref={coverInputRef}
         accept="image/*"
-        onChange={handleBgChange}
+        onChange={handleCoverChange}
       />
 
       <Stack sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <ProfileHeader
-          bgUrl={bg}
+          coverUrl={cover}
           avatarUrl={avatar}
           name={name}
           username={userData.username}
@@ -75,7 +75,7 @@ export const UserProfile = ({
           isOwnProfile={userData.isOwnProfile ?? false}
           onEdit={handleEdit}
           onNameChange={setName}
-          onBgClick={() => bgInputRef.current?.click()}
+          onBgClick={() => coverInputRef.current?.click()}
           onAvatarClick={() => avatarInputRef.current?.click()}
         />
 

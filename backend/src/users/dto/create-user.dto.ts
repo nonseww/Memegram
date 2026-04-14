@@ -15,7 +15,7 @@ export class CreateUserDto {
   @MinLength(4, { message: vm('Username').minLength(4) })
   @MaxLength(30, { message: vm('Username').maxLength(30) })
   @Matches(/^[a-zA-Z0-9_]+$/, {
-    message: vm('Password').alphanumericUnderscore,
+    message: vm('Username').alphanumericUnderscore,
   })
   username!: string;
 

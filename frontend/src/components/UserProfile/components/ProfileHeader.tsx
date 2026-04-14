@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 
 interface ProfileHeaderProps {
-  bgUrl: string;
+  coverUrl: string;
   avatarUrl: string;
   name: string;
   username: string;
@@ -22,7 +22,7 @@ interface ProfileHeaderProps {
 }
 
 export const ProfileHeader = ({
-  bgUrl,
+  coverUrl,
   avatarUrl,
   name,
   username,
@@ -44,7 +44,7 @@ export const ProfileHeader = ({
         onClick={isEditing ? onBgClick : undefined}
       >
         <LazyImageGuard
-          src={bgUrl}
+          src={coverUrl}
           minHeight={150}
           viewHeight="0px"
           skeleton={
@@ -63,7 +63,7 @@ export const ProfileHeader = ({
             <Box
               {...lazyProps}
               component="img"
-              src={bgUrl}
+              src={coverUrl}
               sx={{
                 ...lazyProps.sx,
                 width: "100%",
@@ -121,9 +121,7 @@ export const ProfileHeader = ({
               cursor: isEditing ? "pointer" : "default",
               zIndex: 3,
             }}
-            onClick={() => {
-              isEditing ? onAvatarClick : undefined;
-            }}
+            onClick={isEditing ? onAvatarClick : undefined}
           >
             <Avatar
               src={avatarUrl}

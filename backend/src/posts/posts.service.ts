@@ -7,7 +7,6 @@ import {
 import { CreatePostDto } from './dto/create-post.dto.js';
 import { UpdatePostDto } from './dto/update-post.dto.js';
 import { PrismaService } from '#/prisma/prisma.service.js';
-import { Post } from './entities/post.entity.js';
 
 @Injectable()
 export class PostsService {

@@ -12,20 +12,6 @@ import {
 import { Loader } from "@/ui/Loader";
 import type { UpdateProfileDto } from "@/types/profileDto";
 
-const mockUserData: UserProfileView = {
-  id: 1,
-  name: "Инна Политучая",
-  username: "sus_nonseww",
-  postsCount: 42,
-  followersCount: 1250,
-  followingsCount: 380,
-  imageUrl: "/src/assets/photo_5258499396356215005_y.jpg",
-  avatarUrl: "/src/assets/photo_5337133057770722354_y.jpg",
-  aboutText: "I’m trying to do interesting posts and funny memes, okay?",
-  isOwnProfile: true,
-  isFollowing: false,
-};
-
 export const Profile = () => {
   const { username } = useParams();
   const dispatch = useTypedDispatch();
@@ -34,8 +20,6 @@ export const Profile = () => {
     (state) => state.profile,
   );
   const profileUsername = username || currentUser?.username;
-  console.log(profileUsername);
-  console.log(currentUser);
   const isOwnProfile = currentUser?.username === profileUsername;
 
   useEffect(() => {

@@ -41,16 +41,16 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @Patch(':id')
-  @UseGuards(JwtAuthGuard)
-  update(@Param('id', ParseIntPipe) id: string, @Body() dto: UpdateUserDto) {
-    return this.usersService.update(+id, dto);
-  }
-
   @Patch('/me')
   @UseGuards(JwtAuthGuard)
   updateMe(@Body() dto: UpdateUserDto, @CurrentUser() user) {
     return this.usersService.update(user.id, dto);
+  }
+
+  @Patch(':id')
+  @UseGuards(JwtAuthGuard)
+  update(@Param('id', ParseIntPipe) id: string, @Body() dto: UpdateUserDto) {
+    return this.usersService.update(+id, dto);
   }
 
   @Delete(':id')

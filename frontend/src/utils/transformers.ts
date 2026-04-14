@@ -5,7 +5,7 @@ export interface UserProfileView {
   name: string;
   username: string;
   avatarUrl: string;
-  imageUrl: string;
+  coverUrl: string;
   aboutText: string;
   postsCount: number;
   followersCount: number;
@@ -22,7 +22,7 @@ export const toProfileView = (
   name: profile.name,
   username: profile.username,
   avatarUrl: profile.avatarUrl || "/default-avatar.jpg",
-  imageUrl: "/default-cover.jpg",
+  coverUrl: profile.coverUrl || "/default-cover.jpg",
   aboutText: profile.about || "О себе не указано",
   postsCount: profile.postsCount,
   followersCount: profile.followersCount,
