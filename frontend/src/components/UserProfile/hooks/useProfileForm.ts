@@ -7,7 +7,6 @@ export const useProfileForm = (
   initData: UserProfileView,
   onUpdate: (dto: UpdateProfileDto) => Promise<void>,
 ) => {
-  console.log(initData);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [name, setName] = useState<string>(initData.name);
   const [about, setAbout] = useState<string>(initData.aboutText);

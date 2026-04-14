@@ -1,6 +1,6 @@
 import { UserProfile } from "@/components/UserProfile";
 import { useTypedDispatch, useTypedSelector } from "@/store/hooks";
-import { toProfileView, type UserProfileView } from "@/utils/transformers";
+import { toProfileView } from "@/utils/transformers";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
@@ -16,7 +16,7 @@ export const Profile = () => {
   const { username } = useParams();
   const dispatch = useTypedDispatch();
   const { user: currentUser } = useTypedSelector((state) => state.auth);
-  const { profile, isSubmitLoading, isInitLoading, error } = useTypedSelector(
+  const { profile, isSubmitLoading, isInitLoading } = useTypedSelector(
     (state) => state.profile,
   );
   const profileUsername = username || currentUser?.username;
@@ -37,9 +37,10 @@ export const Profile = () => {
   if (!profile) return null;
 
   const userData = toProfileView(profile, isOwnProfile);
+  console.log("userData", userData);
 
-  const handleFollow = () => {
-    dispatch(toggleFollowThunk(profile.id));
+  const handleFollow = async () => {
+    await dispatch(toggleFollowThunk(profile.id));
   };
 
   const handleUpdate = async (dto: UpdateProfileDto) => {

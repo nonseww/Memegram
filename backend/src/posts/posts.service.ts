@@ -29,9 +29,10 @@ export class PostsService {
       description: post.description,
       meme: post.image_url,
       date: post.created_at.toISOString(),
-      author: post.users.name,
+      authorName: post.users.name,
+      authorUsername: post.users.username,
       authorPfp: post.users.avatar_url,
-      author_id: post.users.id,
+      authorId: post.users.id,
       likesCount: post.likes.length,
       isLiked: currentUserId
         ? post.likes.some((like) => like.user_id === currentUserId)

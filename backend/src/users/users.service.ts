@@ -211,11 +211,11 @@ export class UsersService {
   }
 
   async toggleFollow(followerId: number, followingId: number) {
-    if (followerId === followerId) {
+    if (followerId === followingId) {
       throw new BadRequestException('User cannot follow themself');
     }
 
-    const targetUser = await this.findUserById(followerId);
+    await this.findUserById(followingId);
 
     const isFollowExisting = await this.prisma.follows.findUnique({
       where: {
@@ -235,7 +235,7 @@ export class UsersService {
           },
         },
       });
-      return { isFolowing: false };
+      return { isFollowing: false };
     } else {
       await this.prisma.follows.create({
         data: {

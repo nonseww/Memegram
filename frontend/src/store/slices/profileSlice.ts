@@ -116,11 +116,14 @@ const profileSlice = createSlice({
       .addCase(
         toggleFollowThunk.fulfilled,
         (state, action: PayloadAction<{ isFollowing: boolean }>) => {
+          console.log("payload:", action.payload); // ← что приходит с бэка?
+          console.log("before:", state.profile?.isFollowing);
           state.isSubmitLoading = false;
           if (state.profile) {
             state.profile.isFollowing = action.payload.isFollowing;
             state.profile.followersCount += action.payload.isFollowing ? 1 : -1;
           }
+          console.log("after:", state.profile?.isFollowing);
         },
       )
       .addCase(toggleFollowThunk.rejected, (state, action) => {

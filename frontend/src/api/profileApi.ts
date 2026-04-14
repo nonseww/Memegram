@@ -25,6 +25,7 @@ export const profileApi = {
 
   toggleFollow: async (userId: number): Promise<{ isFollowing: boolean }> => {
     const { data } = await api.post(`/users/${userId}/follow`);
+    console.log("API response:", data);
     return data;
   },
 };

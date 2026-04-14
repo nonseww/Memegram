@@ -32,6 +32,7 @@ export class UsersController {
   }
 
   @Get(':username')
+  @UseGuards(JwtAuthGuard)
   getProfile(@Param('username') username: string, @CurrentUser() currentUser) {
     return this.usersService.getProfile(username, currentUser?.id);
   }

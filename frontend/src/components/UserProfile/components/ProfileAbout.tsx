@@ -30,7 +30,7 @@ export const ProfileAbout = ({
           onChange={onAboutChange}
         />
       ) : (
-        <Typography>{about}</Typography>
+        <Typography sx={{ wordBreak: "break-word" }}>{about}</Typography>
       )}
       {!isEditing && <Divider sx={{ borderColor: "primary.main" }} />}
     </Stack>

@@ -71,12 +71,14 @@ export const UserProfile = ({
           avatarUrl={avatar}
           name={name}
           username={userData.username}
+          isFollowing={userData.isFollowing}
           isEditing={isEditing}
           isOwnProfile={userData.isOwnProfile ?? false}
           onEdit={handleEdit}
           onNameChange={setName}
           onBgClick={() => coverInputRef.current?.click()}
           onAvatarClick={() => avatarInputRef.current?.click()}
+          onFollow={onFollow}
         />
 
         <ProfileAbout

@@ -9,14 +9,23 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import v from "@/styles/_variables.module.scss";
+import { Link } from "react-router-dom";
 
 interface PostModalProps {
   post: Post | null;
   onClose: () => void;
   open: boolean;
+  onFollow: () => void;
+  isFollowing: boolean;
 }
 
-export const PostModal = ({ post, open, onClose }: PostModalProps) => {
+export const PostModal = ({
+  post,
+  open,
+  onClose,
+  // onFollow,
+  // isFollowing,
+}: PostModalProps) => {
   if (!post) return null;
 
   return (
@@ -116,6 +125,8 @@ const AuthorHeader = ({
     }}
   >
     <Box
+      component={Link}
+      to={`/profile/${post.authorUsername}`}
       sx={{
         display: "flex",
         flexDirection: "row",
@@ -125,7 +136,7 @@ const AuthorHeader = ({
     >
       <Avatar src={post.authorPfp} />
       <Typography component="span" fontWeight={600}>
-        {post.author}
+        {post.authorName}
       </Typography>
     </Box>
 

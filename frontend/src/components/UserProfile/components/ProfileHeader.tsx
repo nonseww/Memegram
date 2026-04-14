@@ -2,23 +2,27 @@ import { LazyImageGuard } from "@/ui/LazyImageGuard";
 import { Overlay } from "@/ui/Overlay";
 import { Edit, PhotoCamera } from "@mui/icons-material";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Skeleton from "@mui/material/Skeleton";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
+import v from "@/styles/_variables.module.scss";
 
 interface ProfileHeaderProps {
   coverUrl: string;
   avatarUrl: string;
   name: string;
   username: string;
+  isFollowing: boolean;
   isEditing: boolean;
   isOwnProfile: boolean;
   onEdit: () => void;
   onNameChange: (value: string) => void;
   onBgClick: () => void;
   onAvatarClick: () => void;
+  onFollow: () => void;
 }
 
 export const ProfileHeader = ({
@@ -26,12 +30,14 @@ export const ProfileHeader = ({
   avatarUrl,
   name,
   username,
+  isFollowing,
   isEditing,
   isOwnProfile,
   onEdit,
   onNameChange,
   onBgClick,
   onAvatarClick,
+  onFollow,
 }: ProfileHeaderProps) => {
   return (
     <>
@@ -100,6 +106,22 @@ export const ProfileHeader = ({
           >
             <Edit />
           </IconButton>
+        )}
+
+        {!isOwnProfile && (
+          <Button
+            onClick={onFollow}
+            sx={{
+              backgroundColor: v.mainPurple,
+              color: "white",
+              boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+              position: "absolute",
+              right: "10px",
+              zIndex: 3,
+            }}
+          >
+            {isFollowing ? "Отписаться" : "Подписаться"}
+          </Button>
         )}
 
         <Box

@@ -2,9 +2,10 @@ export interface Post {
   id: number;
   title: string;
   date: string;
-  author: string;
+  authorName: string;
+  authorUsername: string;
   authorPfp: string;
-  author_id: number;
+  authorId: number;
   meme: string;
   description: string;
   isLiked: boolean;
