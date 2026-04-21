@@ -1,6 +1,6 @@
 import Paper from "@mui/material/Paper";
 import { LazyImageGuard } from "@/ui/LazyImageGuard";
-import type { UserProfile } from "@/types/userData";
+import type { UserProfileView } from "@/utils/transformers";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -14,7 +14,7 @@ import { PhotoCamera } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 
 interface UserProfileProps {
-  userData: UserProfile;
+  userData: UserProfileView;
 }
 
 const MAXLENGTH = 300;
@@ -38,7 +38,7 @@ export const ProfileEdit = ({ userData }: UserProfileProps) => {
       }}
     >
       <LazyImageGuard
-        src={userData.imageUrl}
+        src={userData.coverUrl ?? ""}
         minHeight={150}
         viewHeight="0px"
         skeleton={
@@ -61,7 +61,7 @@ export const ProfileEdit = ({ userData }: UserProfileProps) => {
             <Box
               {...lazyProps}
               component="img"
-              src={userData.imageUrl}
+              src={userData.avatarUrl ?? ""}
               sx={{
                 ...lazyProps.sx,
                 width: "100%",

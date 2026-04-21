@@ -41,8 +41,8 @@ export const PostCardBase = ({ post }: PostCardBaseProps) => {
               }}
             >
               <CardHeader
-                avatar={<Avatar src={post.authorPfp} alt={post.author} />}
-                title={post.author}
+                avatar={<Avatar src={post.authorPfp} alt={post.authorName} />}
+                title={post.authorName}
               />
               <Typography
                 variant="h6"

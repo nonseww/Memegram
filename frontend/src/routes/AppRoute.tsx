@@ -12,11 +12,6 @@ import { Main } from "@/pages/Main";
 const Profile = lazy(() =>
   import("@/pages/Profile").then((m) => ({ default: m.Profile })),
 );
-const ProfileEditPage = lazy(() =>
-  import("@/pages/ProfileEditPage").then((m) => ({
-    default: m.ProfileEditPage,
-  })),
-);
 const Posts = lazy(() =>
   import("@/pages/Posts").then((m) => ({ default: m.Posts })),
 );
@@ -44,7 +39,6 @@ export const AppRoute = () => {
               <Route path="/" element={<Main />} />
               <Route path="/post/:postId" element={<Main />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/profile-edit" element={<ProfileEditPage />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="/new-post" element={<NewPost />} />
               <Route path="/edit-post/:id" element={<UpsertPost />} />

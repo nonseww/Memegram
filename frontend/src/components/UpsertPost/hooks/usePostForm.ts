@@ -3,7 +3,7 @@ import type { UpsertPost as UpsertPostInterface } from "@/types/upsertPost";
 import { useTypedDispatch } from "@/store/hooks";
 import { useState } from "react";
 import { createPostThunk, updatePostThunk } from "@/store/slices/postsSlice";
-import { postsApi } from "@/api/postsApi";
+import { commonApi } from "@/api/commonApi";
 
 export const usePostForm = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export const usePostForm = () => {
       let imageUrl = meme;
 
       if (imageFile) {
-        imageUrl = await postsApi.uploadImage(imageFile);
+        imageUrl = await commonApi.uploadImage(imageFile);
       }
 
       const dto = { title, description, image_url: imageUrl };
