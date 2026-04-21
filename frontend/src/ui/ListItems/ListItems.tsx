@@ -35,7 +35,7 @@ export const ListItems = ({
           sx={{ borderRadius: "10px", mb: 1 }}
         >
           <ListItemIcon>
-            <Icon id={id} src={src} alt={alt} style={{ color: v.mainPurple }} />
+            <Icon id={id} src={src} alt={alt} color={v.mainPurple} />
           </ListItemIcon>
           <ListItemText primary={label} sx={{ color: v.textColor }} />
         </ListItemButton>

@@ -45,7 +45,7 @@ export const BottomMenu = () => {
         sx={{
           width: "100%",
           borderRadius: 30,
-          background: "rgba(138, 43, 226, 0.6)",
+          background: "rgba(145, 128, 160, 0.6)",
         }}
       >
         {NAV_ELEMENTS.map(({ id, label, src, alt }) => (

@@ -48,6 +48,8 @@ export class AuthService {
     const tokens = await this.generateTokens({
       sub: user.id,
       email: user.email,
+      name: user.name,
+      username: user.username,
       roles: user.role ? [user.role] : ['user'],
     });
 
@@ -67,6 +69,8 @@ export class AuthService {
     const tokens = await this.generateTokens({
       sub: user.id,
       email: user.email,
+      name: user.name,
+      username: user.username,
       roles: user.role ? [user.role] : ['user'],
     });
 
@@ -107,6 +111,8 @@ export class AuthService {
       return this.generateTokens({
         sub: user.id,
         email: user.email,
+        name: user.name,
+        username: user.username,
         roles: user.role ? [user.role] : ['user'],
       });
     } catch (error) {
