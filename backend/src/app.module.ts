@@ -10,6 +10,7 @@ import { UploadModule } from './upload/upload.module.js';
 import Joi from 'joi';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { CommentsModule } from './comments/comments.module.js';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { join } from 'path';
     PrismaModule,
     PostsModule,
     UploadModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
