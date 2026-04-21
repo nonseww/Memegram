@@ -38,7 +38,7 @@ export const ProfileEdit = ({ userData }: UserProfileProps) => {
       }}
     >
       <LazyImageGuard
-        src={userData.imageUrl ?? ""}
+        src={userData.coverUrl ?? ""}
         minHeight={150}
         viewHeight="0px"
         skeleton={

@@ -15,8 +15,8 @@ interface PostModalProps {
   post: Post | null;
   onClose: () => void;
   open: boolean;
-  onFollow: () => void;
-  isFollowing: boolean;
+  // onFollow: () => void;
+  // isFollowing: boolean;
 }
 
 export const PostModal = ({

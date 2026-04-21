@@ -17,7 +17,7 @@ interface UserProfileProps {
 
 export const UserProfile = ({
   userData,
-  isSubmitLoading,
+  //isSubmitLoading,
   onFollow,
   onUpdate,
 }: UserProfileProps) => {

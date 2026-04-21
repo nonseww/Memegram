@@ -3,7 +3,6 @@ import type { UpsertPost as UpsertPostInterface } from "@/types/upsertPost";
 import { useTypedDispatch } from "@/store/hooks";
 import { useState } from "react";
 import { createPostThunk, updatePostThunk } from "@/store/slices/postsSlice";
-import { postsApi } from "@/api/postsApi";
 import { commonApi } from "@/api/commonApi";
 
 export const usePostForm = () => {
