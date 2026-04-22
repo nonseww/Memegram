@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import v from "@/styles/_variables.module.scss";
 import { Link } from "react-router-dom";
+import { CommentsSection } from "../CommentsSection";
 
 interface PostModalProps {
   post: Post | null;
@@ -100,6 +101,8 @@ export const PostModal = ({
               <Typography component="span">{post.commentsCount}</Typography>
             </Box>
           </Box>
+
+          <CommentsSection postId={post.id} />
         </Box>
       </Box>
     </Modal>

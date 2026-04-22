@@ -1,3 +1,11 @@
+export interface CommentApi {
+  id: number;
+  user_id: number;
+  post_id: number;
+  text: string;
+  created_at: string;
+}
+
 export interface Comment {
   id: number;
   userId: number;
