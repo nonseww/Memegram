@@ -5,12 +5,14 @@ interface MultilineTextFieldProps {
   maxLength?: number;
   value: string;
   onChange: (value: string) => void;
+  placeholder?: string;
 }
 
 export const MultilineTextField = ({
   maxLength,
   value,
   onChange,
+  placeholder,
 }: MultilineTextFieldProps) => {
   const memoSlotProps = useMemo(
     () => ({
@@ -36,7 +38,7 @@ export const MultilineTextField = ({
 
   return (
     <TextField
-      label="Описание"
+      label={placeholder || "Описание"}
       fullWidth
       multiline
       rows={4}
